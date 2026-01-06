@@ -29,7 +29,7 @@ export default function RootLayout({
           FontInter.variable
         )}
       >
-        <NavBar/>
+        <NavBar />
         <main className='flex-grow bg-blue-500'>{children}</main>
         <footer>foooooter</footer>
       </body>
