@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import NavBar from '@/components/layout/navbar';
 
 const FontInter = Inter({
   variable: '--font-inter',
@@ -22,7 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={cn('antialiased', FontInter.variable)}>{children}</body>
+      <body
+        className={cn(
+          'antialiased flex flex-col min-h-screen px-2',
+          FontInter.variable
+        )}
+      >
+        <NavBar/>
+        <main className='flex-grow bg-blue-500'>{children}</main>
+        <footer>foooooter</footer>
+      </body>
     </html>
   );
 }
