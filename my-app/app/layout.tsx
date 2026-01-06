@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import NavBar from '@/components/layout/navbar';
+import { ThemeProvider } from 'next-themes';
 
 const FontInter = Inter({
   variable: '--font-inter',
@@ -22,16 +23,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='pt-BR' suppressHydrationWarning>
       <body
         className={cn(
           'antialiased flex flex-col min-h-screen px-2',
           FontInter.variable
         )}
       >
-        <NavBar />
-        <main className='flex-grow bg-blue-500'>{children}</main>
-        <footer>foooooter</footer>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NavBar />
+          <main className='flex-grow bg-bg'>{children}</main>
+          <footer>foooooter</footer>
+        </ThemeProvider>
       </body>
     </html>
   );
