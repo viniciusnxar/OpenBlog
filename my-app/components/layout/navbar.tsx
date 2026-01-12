@@ -3,6 +3,7 @@ import ThemeToggle from './themetoggle';
 import { MdNoteAlt } from 'react-icons/md';
 import SearchInput from './searchinput';
 import Notifications from './notifications';
+import UserButton from './userbutton';
 
 const NavBar = () => {
   return (
@@ -16,8 +17,8 @@ const NavBar = () => {
           <SearchInput />
           <div className='flex gap-5 sn:gap-8 items-center'>
             <ThemeToggle />
-            <Notifications/>
-            <div>user</div>
+            <Notifications />
+            <UserButton />
           </div>
         </div>
       </Container>

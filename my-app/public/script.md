@@ -4,3 +4,4 @@ bun install react-icons
 bunx --bun shadcn@latest init
 bunx --bun shadcn@latest add input
 bunx --bun shadcn@latest add dropdown-menu
+bunx --bun shadcn@latest add avatar
