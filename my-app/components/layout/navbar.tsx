@@ -1,9 +1,10 @@
-import Container from './container';
-import ThemeToggle from './themetoggle';
+import Container from './Container';
+import ThemeToggle from './ThemeToggle';
 import { MdNoteAlt } from 'react-icons/md';
-import SearchInput from './searchinput';
-import Notifications from './notifications';
-import UserButton from './userbutton';
+import SearchInput from './SearchInput';
+import Notifications from './Notifications';
+import UserButton from './UserButton';
+import Link from 'next/link';
 
 const NavBar = () => {
   return (
@@ -19,6 +20,10 @@ const NavBar = () => {
             <ThemeToggle />
             <Notifications />
             <UserButton />
+            <>
+              <Link href='/login'>Login</Link>
+              <Link href='/register'>Register</Link>
+            </>
           </div>
         </div>
       </Container>
