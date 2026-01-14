@@ -38,8 +38,14 @@ const FormField = ({
         placeholder={placeholder}
         {...register(id as Path<LoginValues>)}
         className={cn(
-          'w-full p-3 my-2 outline-none rounded-md disabled:opacity-70 disabled:cursor-not-allowed border-slate-300 dark:border-slate-700',
-          errors[id] && 'border-rose-400',
+          'w-full px-4 py-3 my-1 outline-none rounded-md border transition-colors',
+          'disabled:opacity-70 disabled:cursor-not-allowed',
+          'border-slate-300 dark:border-slate-700',
+          'bg-white dark:bg-slate-900',
+          'focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+          'dark:focus:ring-blue-600 dark:focus:border-blue-600',
+          errors &&
+            'border-slate-400 focus:ring-rose-300 dark:focus:ring-rose-700',
           inputClassNames
         )}
       />
