@@ -4,6 +4,7 @@ import { LoginSchema, LoginSchemaType } from '@/schemas/LoginSchemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormField from '../common/FormField';
+import Button from '../common/Button';
 
 const LoginForm = () => {
   const {
@@ -32,7 +33,7 @@ const LoginForm = () => {
         placeholder='password'
         type='password'
       />
-      <button type='submit'>Login</button>
+      <Button type='submit' label='Login' />
     </form>
   );
 };
