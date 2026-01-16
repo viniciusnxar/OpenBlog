@@ -29,10 +29,10 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'disabled:opacity-70 disabled:cursor-not-allowed rounded-md hoover:opacity-80 transitions w-auto border-slate-300 flex items-center justify-center gap-2 py-3 px-5 my-2 bg-slate-700 text-white dark:border-slate-700',
+        'disabled:opacity-70 disabled:cursor-not-allowed rounded-md hoover:opacity-80 transitions w-auto border-slate-300 flex items-center justify-center gap-2 py-3 px-5 my-2 bg-button-primary text-button-primary-text dark:border-red-700',
         outlined &&
-          'bg-transparent text-slate-700 dark:text-slate-300 dark:bg-transparent',
-        small && 'text-sm py-1 px-2 border-[1px]',
+          'bg-button-primary text-button-primary-text dark:text-button-primary-text dark:-button-primary',
+        small && 'text-sm py-1 px-2 border',
         className && className
       )}
     >

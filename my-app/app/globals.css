@@ -1,85 +1,170 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 /* ---break---*/
 @custom-variant dark (&:is(.dark *));
 
 /* Dark mode config using class*/
 :root {
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  /* Cores do tema original - convertidas para HEX */
+  --background: #ffffff; /* oklch(1 0 0) */
+  --foreground: #020617; /* oklch(0.129 0.042 264.695) */
+  --card: #ffffff; /* oklch(1 0 0) */
+  --card-foreground: #020617; /* oklch(0.129 0.042 264.695) */
+  --primary: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --primary-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --popover: #ffffff; /* oklch(1 0 0) */
+  --popover-foreground: #020617; /* oklch(0.129 0.042 264.695) */
+  --secondary: #f1f5f9; /* oklch(0.968 0.007 247.896) */
+  --secondary-foreground: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --muted: #f1f5f9; /* oklch(0.968 0.007 247.896) */
+  --muted-foreground: #64748b; /* oklch(0.554 0.046 257.417) */
+  --accent: #f1f5f9; /* oklch(0.968 0.007 247.896) */
+  --accent-foreground: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --destructive: #dc2626; /* oklch(0.577 0.245 27.325) */
+  --border: #e2e8f0; /* oklch(0.929 0.013 255.508) */
+  --input: #e2e8f0; /* oklch(0.929 0.013 255.508) */
+  --ring: #94a3b8; /* oklch(0.704 0.04 256.788) */
+  --chart-1: #ea580c; /* oklch(0.646 0.222 41.116) */
+  --chart-2: #0d9488; /* oklch(0.6 0.118 184.704) */
+  --chart-3: #3b82f6; /* oklch(0.398 0.07 227.392) */
+  --chart-4: #84cc16; /* oklch(0.828 0.189 84.429) */
+  --chart-5: #f59e0b; /* oklch(0.769 0.188 70.08) */
+  --sidebar: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --sidebar-foreground: #020617; /* oklch(0.129 0.042 264.695) */
+  --sidebar-primary: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --sidebar-primary-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --sidebar-accent: #f1f5f9; /* oklch(0.968 0.007 247.896) */
+  --sidebar-accent-foreground: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --sidebar-border: #e2e8f0; /* oklch(0.929 0.013 255.508) */
+  --sidebar-ring: #94a3b8; /* oklch(0.704 0.04 256.788) */
+
+  /* Cores dos botões - Tema Claro (HEX) */
+  --button-primary: var(--color-slate-700);
+  --button-primary-hover: #2563eb; /* blue-600 */
+  --button-primary-text: #ffffff;
+  --button-primary-ring: #93c5fd; /* blue-300 */
+  --button-secondary: #6b7280; /* gray-500 */
+  --button-secondary-hover: #4b5563; /* gray-600 */
+  --button-secondary-text: #ffffff;
+  --button-success: #10b981; /* emerald-500 */
+  --button-success-hover: #059669; /* emerald-600 */
+  --button-success-text: #ffffff;
+  --button-danger: #ef4444; /* red-500 */
+  --button-danger-hover: #dc2626; /* red-600 */
+  --button-danger-text: #ffffff;
+  --button-warning: #f59e0b; /* amber-500 */
+  --button-warning-hover: #d97706; /* amber-600 */
+  --button-warning-text: #ffffff;
+  --button-info: #0ea5e9; /* sky-500 */
+  --button-info-hover: #0284c7; /* sky-600 */
+  --button-info-text: #ffffff;
+  --button-disabled: #9ca3af; /* gray-400 */
+  --button-disabled-text: #6b7280; /* gray-500 */
+  --button-outline-border: #d1d5db; /* gray-300 */
+  --button-outline-hover: #f3f4f6; /* gray-100 */
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Cores do tema original - Dark - convertidas para HEX */
+  --background: #020617; /* oklch(0.129 0.042 264.695) */
+  --foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --card: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --card-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --primary: #e2e8f0; /* oklch(0.929 0.013 255.508) */
+  --primary-foreground: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --popover: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --popover-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --secondary: #334155; /* oklch(0.279 0.041 260.031) */
+  --secondary-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --muted: #334155; /* oklch(0.279 0.041 260.031) */
+  --muted-foreground: #94a3b8; /* oklch(0.704 0.04 256.788) */
+  --accent: #334155; /* oklch(0.279 0.041 260.031) */
+  --accent-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --destructive: #b91c1c; /* oklch(0.704 0.191 22.216) */
+  --border: rgba(255, 255, 255, 0.1); /* oklch(1 0 0 / 10%) */
+  --input: rgba(255, 255, 255, 0.15); /* oklch(1 0 0 / 15%) */
+  --ring: #9ca3af; /* oklch(0.551 0.027 264.364) */
+  --chart-1: #1d4ed8; /* oklch(0.488 0.243 264.376) */
+  --chart-2: #0d9488; /* oklch(0.696 0.17 162.48) */
+  --chart-3: #f59e0b; /* oklch(0.769 0.188 70.08) */
+  --chart-4: #c026d3; /* oklch(0.627 0.265 303.9) */
+  --chart-5: #dc2626; /* oklch(0.645 0.246 16.439) */
+  --sidebar: #1e293b; /* oklch(0.208 0.042 265.755) */
+  --sidebar-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --sidebar-primary: #1d4ed8; /* oklch(0.488 0.243 264.376) */
+  --sidebar-primary-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --sidebar-accent: #334155; /* oklch(0.279 0.041 260.031) */
+  --sidebar-accent-foreground: #f8fafc; /* oklch(0.984 0.003 247.858) */
+  --sidebar-border: rgba(255, 255, 255, 0.1); /* oklch(1 0 0 / 10%) */
+  --sidebar-ring: #9ca3af; /* oklch(0.551 0.027 264.364) */
+
+  /* Cores dos botões - Tema Escuro (HEX) */
+  --button-primary: var(--color-slate-500);
+  --button-primary-hover: #1e40af; /* blue-800 */
+  --button-primary-text: #ffffff;
+  --button-primary-ring: #60a5fa; /* blue-400 */
+  --button-secondary: #4b5563; /* gray-600 */
+  --button-secondary-hover: #374151; /* gray-700 */
+  --button-secondary-text: #ffffff;
+  --button-success: #047857; /* emerald-700 */
+  --button-success-hover: #065f46; /* emerald-800 */
+  --button-success-text: #ffffff;
+  --button-danger: #b91c1c; /* red-700 */
+  --button-danger-hover: #991b1b; /* red-800 */
+  --button-danger-text: #ffffff;
+  --button-warning: #d97706; /* amber-600 */
+  --button-warning-hover: #b45309; /* amber-700 */
+  --button-warning-text: #ffffff;
+  --button-info: #0369a1; /* sky-700 */
+  --button-info-hover: #075985; /* sky-800 */
+  --button-info-text: #ffffff;
+  --button-disabled: #4b5563; /* gray-600 */
+  --button-disabled-text: #9ca3af; /* gray-400 */
+  --button-outline-border: #4b5563; /* gray-600 */
+  --button-outline-hover: #374151; /* gray-700 */
 }
 
 @theme inline {
+  /* Variáveis do tema original */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
+
+  /* Variáveis dos botões */
+  --color-button-primary: var(--button-primary);
+  --color-button-primary-hover: var(--button-primary-hover);
+  --color-button-primary-text: var(--button-primary-text);
+  --color-button-primary-ring: var(--button-primary-ring);
+
+  --color-button-secondary: var(--button-secondary);
+  --color-button-secondary-hover: var(--button-secondary-hover);
+  --color-button-secondary-text: var(--button-secondary-text);
+
+  --color-button-success: var(--button-success);
+  --color-button-success-hover: var(--button-success-hover);
+  --color-button-success-text: var(--button-success-text);
+
+  --color-button-danger: var(--button-danger);
+  --color-button-danger-hover: var(--button-danger-hover);
+  --color-button-danger-text: var(--button-danger-text);
+
+  --color-button-warning: var(--button-warning);
+  --color-button-warning-hover: var(--button-warning-hover);
+  --color-button-warning-text: var(--button-warning-text);
+
+  --color-button-info: var(--button-info);
+  --color-button-info-hover: var(--button-info-hover);
+  --color-button-info-text: var(--button-info-text);
+
+  --color-button-disabled: var(--button-disabled);
+  --color-button-disabled-text: var(--button-disabled-text);
+
+  --color-button-outline-border: var(--button-outline-border);
+  --color-button-outline-hover: var(--button-outline-hover);
 
   /* Configurações adicionais */
   --radius-lg: 0.5rem;
@@ -129,5 +214,71 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Estilos base para botões */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    background-color: var(--button-primary);
+    color: var(--button-primary-text);
+    @apply focus:ring-button-primary-ring;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--button-primary-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--button-secondary);
+    color: var(--button-secondary-text);
+    @apply focus:ring-gray-300;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--button-secondary-hover);
+  }
+
+  .btn-success {
+    background-color: var(--button-success);
+    color: var(--button-success-text);
+    @apply focus:ring-emerald-300;
+  }
+
+  .btn-success:hover:not(:disabled) {
+    background-color: var(--button-success-hover);
+  }
+
+  .btn-danger {
+    background-color: var(--button-danger);
+    color: var(--button-danger-text);
+    @apply focus:ring-red-300;
+  }
+
+  .btn-danger:hover:not(:disabled) {
+    background-color: var(--button-danger-hover);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--button-outline-border);
+  }
+
+  .btn-outline:hover:not(:disabled) {
+    background-color: var(--button-outline-hover);
+  }
+
+  /* Tamanhos de botões */
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
   }
 }
