@@ -1,6 +1,13 @@
-import { PrismaClient } from '@prisma/client/extension';
+import 'dotenv/config';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from '@/prisma/generated/prisma/client';
 
-export const db = new PrismaClient();
+const connectionString = `${process.env.DATABASE_URL}`;
+
+const adapter = new PrismaPg({ connectionString });
+const db = new PrismaClient({ adapter });
+
+export { db };
 
 declare global {
   var prisma: PrismaClient | undefined;

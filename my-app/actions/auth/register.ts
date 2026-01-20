@@ -30,4 +30,5 @@ export const signUp = async (values: RegisterSchemaType) => {
       password: hashPassword,
     },
   });
+  return { success: 'Usuario Criado!' };
 };

@@ -9,12 +9,12 @@ bun i react-hook-form
 bun i zod @hookform/resolvers
 
 bun i -d prisma
-bun prisma init --db
 bun i @prisma/client
-https://neon.com/
-
+bun i @prisma/adapter-pg
+bun prisma
+bun prisma migrate dev OpenBlog init
 bun prisma generate
-bun prisma db push
 
 bun i bcryptjs
 bun i -D @types/bcryptjs
+https://neon.com/

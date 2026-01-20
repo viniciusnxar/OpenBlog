@@ -7,6 +7,7 @@ import FormField from '../common/FormField';
 import Button from '../common/Button';
 import Heading from '../common/Heading';
 import SocialAuth from './SocialAuth';
+import { signUp } from '@/actions/auth/register';
 
 const RegisterForm = () => {
   const {
@@ -15,7 +16,9 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
   const onSubmit: SubmitHandler<RegisterSchemaType> = (data) => {
-    console.log('data>>>', data);
+    signUp(data).then((res) => {
+      console.log('Response:', res);
+    });
   };
   return (
     <form
