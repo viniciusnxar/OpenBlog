@@ -9,6 +9,7 @@ import Heading from '../common/Heading';
 import SocialAuth from './SocialAuth';
 import { signUp } from '@/actions/auth/register';
 import { useState, useTransition } from 'react';
+import Alert from '../common/Alert';
 
 const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -66,10 +67,10 @@ const RegisterForm = () => {
         type='password'
         disabled={isPending}
       />
-      <div>
-        {error}
-        {success}
-      </div>
+
+      {error && <Alert message={error} error />}
+      {success && <Alert message={success} success />}
+
       <Button
         type='submit'
         label={isPending ? 'Registrando...' : 'Registar'}
