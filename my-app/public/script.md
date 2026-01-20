@@ -11,10 +11,11 @@ bun i zod @hookform/resolvers
 bun i -d prisma
 bun i @prisma/client
 bun i @prisma/adapter-pg
-bun prisma
 bun prisma migrate dev OpenBlog init
 bun prisma generate
 
 bun i bcryptjs
 bun i -D @types/bcryptjs
 https://neon.com/
+
+Visualizar tabelas do banco com prisma(bun prisma studio)

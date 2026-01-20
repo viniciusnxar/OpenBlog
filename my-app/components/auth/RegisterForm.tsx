@@ -8,16 +8,26 @@ import Button from '../common/Button';
 import Heading from '../common/Heading';
 import SocialAuth from './SocialAuth';
 import { signUp } from '@/actions/auth/register';
+import { useState, useTransition } from 'react';
 
 const RegisterForm = () => {
+  const [isPending, startTransition] = useTransition();
+  const [success, setSuccess] = useState<string | undefined>('');
+  const [error, setError] = useState<string | undefined>('');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(RegisterSchema) });
   const onSubmit: SubmitHandler<RegisterSchemaType> = (data) => {
-    signUp(data).then((res) => {
-      console.log('Response:', res);
+    setSuccess('');
+    setError('');
+    startTransition(() => {
+      signUp(data).then((res) => {
+        setError(res.error);
+        setSuccess(res.success);
+      });
     });
   };
   return (
@@ -31,12 +41,14 @@ const RegisterForm = () => {
         register={register}
         errors={errors}
         placeholder='name'
+        disabled={isPending}
       />
       <FormField
         id='email'
         register={register}
         errors={errors}
         placeholder='email'
+        disabled={isPending}
       />
       <FormField
         id='password'
@@ -44,6 +56,7 @@ const RegisterForm = () => {
         errors={errors}
         placeholder='password'
         type='password'
+        disabled={isPending}
       />
       <FormField
         id='confirmPassword'
@@ -51,8 +64,17 @@ const RegisterForm = () => {
         errors={errors}
         placeholder='confirmPassword'
         type='password'
+        disabled={isPending}
       />
-      <Button type='submit' label='Registar' />
+      <div>
+        {error}
+        {success}
+      </div>
+      <Button
+        type='submit'
+        label={isPending ? 'Registrando...' : 'Registar'}
+        disabled={isPending}
+      />
       <div className='flex justify-center my-2'>Ou</div>
       <SocialAuth />
     </form>
