@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { User } from '@/src/generated/prisma/client';
 import {
   FieldErrors,
   Path,
