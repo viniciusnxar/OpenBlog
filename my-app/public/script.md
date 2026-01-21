@@ -19,3 +19,6 @@ bun i -D @types/bcryptjs
 https://neon.com/
 
 Visualizar tabelas do banco com prisma(bun prisma studio)
+
+bun add next-auth@beta
+bun i @auth/prisma-adapter
