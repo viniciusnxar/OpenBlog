@@ -7,15 +7,28 @@ import FormField from '../common/FormField';
 import Button from '../common/Button';
 import Heading from '../common/Heading';
 import SocialAuth from './SocialAuth';
+import { useState, useTransition } from 'react';
+import { login } from '@/actions/auth/login';
+import Alert from '../common/Alert';
 
 const LoginForm = () => {
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>('');
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginSchemaType>({ resolver: zodResolver(LoginSchema) });
   const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
-    console.log('data:', data);
+    setError('');
+
+    startTransition(() => {
+      login(data).then(res => {
+        if (res?.error) {
+          setError(res.error);
+        }
+      });
+    });
   };
   return (
     <form
@@ -28,6 +41,7 @@ const LoginForm = () => {
         register={register}
         errors={errors}
         placeholder='email'
+        disabled={isPending}
       />
       <FormField
         id='password'
@@ -35,8 +49,10 @@ const LoginForm = () => {
         errors={errors}
         placeholder='password'
         type='password'
+        disabled={isPending}
       />
-      <Button type='submit' label='Login' />
+      {error && <Alert message={error} error />}
+      <Button type='submit' label='Login' disabled={isPending} />
       <div className='flex justify-center my-2'>Ou</div>
       <SocialAuth />
     </form>
