@@ -43,7 +43,6 @@ export const login = async (values: LoginSchemaType) => {
     await signIn('credentials', {
       email,
       password,
-      redirectTo: LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError) {
