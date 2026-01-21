@@ -20,6 +20,6 @@ https://neon.com/
 
 Visualizar tabelas do banco com prisma(bun prisma studio)
 
-bun add next-auth@beta
+bun i next-auth@beta
 bun i @auth/prisma-adapter
 @next-auth/prisma-adapter

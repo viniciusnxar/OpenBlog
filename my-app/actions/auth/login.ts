@@ -10,28 +10,21 @@ export const login = async (values: LoginSchemaType) => {
   const validateFields = LoginSchema.safeParse(values);
 
   if (!validateFields.success) {
-    return { error: 'Campos inválidos!' };
+    return { error: 'Campo Invalido!' };
   }
 
   const { email, password } = validateFields.data;
 
   const user = await getUserByEmail(email);
-
-  // Verifica se o usuário existe
-  if (!user) {
-    return { error: 'Credenciais inválidas!' };
+  if (!user || !email || !password || user.password) {
+    return {
+      error:
+        'E-mail já está sendo utilizado por outra conta, tente um novo e-mail',
+    };
   }
-
-  // Verifica se o usuário TEM senha (para autenticação por credenciais)
-  if (!user.password) {
-    return { error: 'Este usuário não possui senha cadastrada' };
-  }
-
-  // Verifica se o email foi verificado
   if (!user.emailVerified) {
-    return { error: 'E-mail não verificado. Verifique sua caixa de entrada.' };
+    return { error: 'E-mail nao verificado no sistema ' };
   }
-
   try {
     await signIn('credentials', {
       email,
@@ -42,14 +35,10 @@ export const login = async (values: LoginSchemaType) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'Credenciais inválidas!' };
+          return { error: 'credemnciais invalidas!' };
         default:
           return { error: 'Algo deu errado' };
       }
     }
-
-    // Para outros tipos de erro
-    console.error('Login error:', error);
-    return { error: 'Falha no login' };
   }
 };
