@@ -23,7 +23,7 @@ const LoginForm = () => {
     setError('');
 
     startTransition(() => {
-      login(data).then(res => {
+      login(data).then((res) => {
         if (res?.error) {
           setError(res.error);
         }
@@ -52,7 +52,11 @@ const LoginForm = () => {
         disabled={isPending}
       />
       {error && <Alert message={error} error />}
-      <Button type='submit' label='Login' disabled={isPending} />
+      <Button
+        type='submit'
+        label={isPending ? 'Logando...' : 'Logar'}
+        disabled={isPending}
+      />
       <div className='flex justify-center my-2'>Ou</div>
       <SocialAuth />
     </form>

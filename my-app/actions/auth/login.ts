@@ -2,7 +2,7 @@
 
 import { signIn } from '@/auth';
 import { getUserByEmail } from '@/lib/user';
-import { LOGIN_REDIRECT } from '@/route';
+import { LOGIN_REDIRECT } from '@/routes';
 import { LoginSchema, LoginSchemaType } from '@/schemas/LoginSchema';
 import { AuthError } from 'next-auth';
 
@@ -16,15 +16,29 @@ export const login = async (values: LoginSchemaType) => {
   const { email, password } = validateFields.data;
 
   const user = await getUserByEmail(email);
-  if (!user || !email || !password || user.password) {
+  if (!user) {
     return {
-      error:
-        'E-mail já está sendo utilizado por outra conta, tente um novo e-mail',
+      error: 'user invalido',
     };
   }
-  if (!user.emailVerified) {
-    return { error: 'E-mail nao verificado no sistema ' };
+  if (!email) {
+    return {
+      error: 'email invalido',
+    };
   }
+  if (!password) {
+    return {
+      error: 'password invalido',
+    };
+  }
+  if (!user.password) {
+    return {
+      error: 'user.password invalido',
+    };
+  }
+  // if (!user.emailVerified) {
+  //   return { error: 'E-mail nao verificado no sistema ' };
+  // }
   try {
     await signIn('credentials', {
       email,
@@ -35,7 +49,7 @@ export const login = async (values: LoginSchemaType) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'credemnciais invalidas!' };
+          return { error: 'credenciais invalidas!' };
         default:
           return { error: 'Algo deu errado' };
       }

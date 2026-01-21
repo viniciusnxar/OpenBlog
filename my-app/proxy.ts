@@ -5,7 +5,7 @@ import {
   authRoutes,
   LOGIN_REDIRECT,
   publicRoutes,
-} from './route';
+} from './routes';
 
 export const { auth: middleware } = NextAuth(authConfig);
 
