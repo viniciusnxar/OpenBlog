@@ -1,6 +1,10 @@
 'use server';
 
 import { db } from '@/lib/db';
+import {
+  generateEmailVerificationToken,
+  sendEmailVerificationToken,
+} from '@/lib/emailVerification';
 import { getUserByEmail } from '@/lib/user';
 import { RegisterSchema, RegisterSchemaType } from '@/schemas/RegisterSchema';
 import bcrypt from 'bcryptjs';
@@ -30,5 +34,13 @@ export const signUp = async (values: RegisterSchemaType) => {
       password: hashPassword,
     },
   });
-  return { success: 'Usuario Criado!' };
+  const emailVerificationToken = await generateEmailVerificationToken(email);
+  const { error } = await sendEmailVerificationToken(
+    emailVerificationToken.email,
+    emailVerificationToken.token,
+  );
+  if(error){ 
+    return {error: 'Algo deu errado ao mandar o e-mail de verificaçao, tente logar novamente!'}
+  }
+  return { success: 'Confirme seu e-mail!' };
 };

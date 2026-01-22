@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { db } from './db';
+import { Resend } from 'resend';
 
 export const getVerificationTokenByEmail = async (email: string) => {
   try {
@@ -8,6 +9,7 @@ export const getVerificationTokenByEmail = async (email: string) => {
     });
     return verificationToken;
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
@@ -26,4 +28,20 @@ export const generateEmailVerificationToken = async (email: string) => {
     data: { email, token, expires },
   });
   return emailVerificationToken;
+};
+
+export const sendEmailVerificationToken = async (
+  email: string,
+  token: string,
+) => {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const emailVerificationLink = `${process.env.BASE_URL}/email-verification=${token}`;
+
+  const res = await resend.emails.send({
+    from: 'onboarding@resend.dev',
+    to: email,
+    subject: 'Confirmação de Email',
+    html: `<p>Para confirmar seu e-mail, clique: <a href='${emailVerificationLink}'>aqui</a> para verificar!</p>`,
+  });
+  return { error: res.error };
 };
