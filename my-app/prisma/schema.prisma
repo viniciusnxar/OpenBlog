@@ -40,3 +40,10 @@ model Account {
 
   @@id([provider, providerAccountId])
 }
+
+model EmailVerificationToken{
+  id            String    @id @default(cuid())
+  email         String    @unique
+  token         String    @unique
+  expires DateTime
+}

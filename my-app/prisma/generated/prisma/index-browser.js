@@ -147,6 +147,13 @@ exports.Prisma.AccountScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmailVerificationTokenScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires: 'expires'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -165,7 +172,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Account: 'Account'
+  Account: 'Account',
+  EmailVerificationToken: 'EmailVerificationToken'
 };
 
 /**

@@ -23,3 +23,4 @@ Visualizar tabelas do banco com prisma(bun prisma studio)
 bun i next-auth@beta
 bun i @auth/prisma-adapter
 @next-auth/prisma-adapter
+bun i uuid
