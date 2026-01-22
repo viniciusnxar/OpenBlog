@@ -10,10 +10,11 @@ import SocialAuth from './SocialAuth';
 import { useState, useTransition } from 'react';
 import { login } from '@/actions/auth/login';
 import Alert from '../common/Alert';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { LOGIN_REDIRECT } from '@/routes';
 
 const LoginForm = () => {
+  const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>('');
   const {
@@ -24,12 +25,18 @@ const LoginForm = () => {
 
   const router = useRouter();
 
+  const urlError =
+    searchParams.get('error') === 'OAuthAccountNotLinked'
+      ? 'E-mail está sendo usado em outro provedor: Google/Github ou Credenciais'
+      : '';
+
   const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
     setError('');
 
     startTransition(() => {
       login(data).then((res) => {
         if (res?.error) {
+          router.replace('/login');
           setError(res.error);
         }
         if (!res?.error) {
@@ -60,12 +67,14 @@ const LoginForm = () => {
         disabled={isPending}
       />
       {error && <Alert message={error} error />}
+
       <Button
         type='submit'
         label={isPending ? 'Logando...' : 'Logar'}
         disabled={isPending}
       />
       <div className='flex justify-center my-2'>Ou</div>
+      {urlError && <Alert message={urlError} error />}
       <SocialAuth />
     </form>
   );
