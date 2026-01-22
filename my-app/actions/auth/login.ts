@@ -1,6 +1,10 @@
 'use server';
 
 import { signIn } from '@/auth';
+import {
+  generateEmailVerificationToken,
+  sendEmailVerificationToken,
+} from '@/lib/emailVerification';
 import { getUserByEmail } from '@/lib/user';
 import { LOGIN_REDIRECT } from '@/routes';
 import { LoginSchema, LoginSchemaType } from '@/schemas/LoginSchema';
@@ -36,9 +40,23 @@ export const login = async (values: LoginSchemaType) => {
       error: 'user.password invalido',
     };
   }
-  // if (!user.emailVerified) {
-  //   return { error: 'E-mail nao verificado no sistema ' };
-  // }
+  if (!user.emailVerified) {
+    const emailVerificationToken = await generateEmailVerificationToken(
+      user.email,
+    );
+
+    const { error } = await sendEmailVerificationToken(
+      emailVerificationToken.email,
+      emailVerificationToken.token,
+    );
+    if (error) {
+      return {
+        error:
+          'Algo deu errado ao mandar o e-mail de verificaçao, tente logar novamente!',
+      };
+    }
+    return { success: 'Confirme seu e-mail!' };
+  }
   try {
     await signIn('credentials', {
       email,

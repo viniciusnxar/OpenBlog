@@ -17,6 +17,7 @@ const LoginForm = () => {
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>('');
   const {
     register,
     handleSubmit,
@@ -41,6 +42,9 @@ const LoginForm = () => {
         }
         if (!res?.error) {
           router.push(LOGIN_REDIRECT);
+        }
+        if (res?.success) {
+          setSuccess(res.success);
         }
       });
     });
@@ -67,7 +71,7 @@ const LoginForm = () => {
         disabled={isPending}
       />
       {error && <Alert message={error} error />}
-
+      {success && <Alert message={success} success />}
       <Button
         type='submit'
         label={isPending ? 'Logando...' : 'Logar'}
