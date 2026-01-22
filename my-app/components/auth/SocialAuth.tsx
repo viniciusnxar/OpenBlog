@@ -13,14 +13,14 @@ const SocialAuth = () => {
     <div className='flex gap-2 flex-col md:flex-row justify-center'>
       <Button
         type='button'
-        label='Login com Github'
+        label='Continuar com Github'
         outlined
         icon={FaGithub}
         onClick={() => handleOnClick('github')}
       />
       <Button
         type='button'
-        label='Login com Google'
+        label='Continuar com Google'
         outlined
         icon={FaGoogle}
         onClick={() => handleOnClick('google')}
