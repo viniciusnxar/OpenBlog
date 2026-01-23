@@ -39,8 +39,11 @@ export const signUp = async (values: RegisterSchemaType) => {
     emailVerificationToken.email,
     emailVerificationToken.token,
   );
-  if(error){ 
-    return {error: 'Algo deu errado ao mandar o e-mail de verificaçao, tente logar novamente!'}
+  if (error) {
+    return {
+      error:
+        'Algo deu errado ao mandar o e-mail de verificaçao, tente logar novamente!',
+    };
   }
   return { success: 'Confirme seu e-mail!' };
 };

@@ -6,7 +6,7 @@ import {
   sendEmailVerificationToken,
 } from '@/lib/emailVerification';
 import { getUserByEmail } from '@/lib/user';
-import { LOGIN_REDIRECT } from '@/routes';
+// import { LOGIN_REDIRECT } from '@/routes';
 import { LoginSchema, LoginSchemaType } from '@/schemas/LoginSchema';
 import { AuthError } from 'next-auth';
 
@@ -66,7 +66,7 @@ export const login = async (values: LoginSchemaType) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'credenciais invalidas!' };
+          return { error: 'Credenciais invalidas!' };
         default:
           return { error: 'Algo deu errado' };
       }

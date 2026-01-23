@@ -8,7 +8,7 @@ export const verifyEmail = async (token: string) => {
     where: { token },
   });
   if (!emailVerificationToken)
-    return { error: 'Token de verificaçao nao existe' };
+    return { error: 'Token de verificaçao inexistente' };
 
   const isExpired = new Date(emailVerificationToken.expires) < new Date();
 
@@ -17,7 +17,7 @@ export const verifyEmail = async (token: string) => {
   const existingUser = await getUserByEmail(emailVerificationToken.email);
 
   if (!existingUser)
-    return { error: 'Usuario nao existe em nosso Banco de dados!' };
+    return { error: 'Usuário inexistente em nosso Banco de dados!' };
   await db.user.update({
     where: { id: existingUser.id },
     data: { emailVerified: new Date(), email: emailVerificationToken.email },

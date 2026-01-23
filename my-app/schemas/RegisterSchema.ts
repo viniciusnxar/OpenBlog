@@ -4,8 +4,8 @@ export const RegisterSchema = z
   .object({
     name: z
       .string()
-      .min(4, { message: 'Nome de usuario deve ter mais de 4 caracteres' })
-      .max(30, { message: 'Nome de usuario deve ter menos de 30 caracteres' }),
+      .min(4, { message: 'Nome de usuário deve ter mais de 4 caracteres' })
+      .max(30, { message: 'Nome de usuário deve ter menos de 30 caracteres' }),
     email: z
       .string()
       .email({ message: 'E-mail invalido, tente utilizar um e-mail valido' }),
@@ -21,7 +21,7 @@ export const RegisterSchema = z
     {
       message: 'As senhas não conferem, confirme a senha novamente',
       path: ['confirmPassword'],
-    }
+    },
   );
 
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
