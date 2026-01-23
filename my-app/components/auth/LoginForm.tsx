@@ -12,6 +12,7 @@ import { login } from '@/actions/auth/login';
 import Alert from '../common/Alert';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { LOGIN_REDIRECT } from '@/routes';
+import Link from 'next/link';
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -23,17 +24,13 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginSchemaType>({ resolver: zodResolver(LoginSchema) });
-
   const router = useRouter();
-
   const urlError =
     searchParams.get('error') === 'OAuthAccountNotLinked'
       ? 'E-mail está sendo usado em outro provedor: Google/Github ou Credenciais'
       : '';
-
   const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
     setError('');
-
     startTransition(() => {
       login(data).then((res) => {
         if (res?.error) {
@@ -80,6 +77,14 @@ const LoginForm = () => {
       <div className='flex justify-center my-2'>Ou</div>
       {urlError && <Alert message={urlError} error />}
       <SocialAuth />
+      <div className='flex items-center justify-center'>
+        <Link
+          className='mt-2 text-sm underline text-slate-700 dark:text-slate-300'
+          href='/password-email-form'
+        >
+          Esqueceu a senha?
+        </Link>
+      </div>
     </form>
   );
 };
