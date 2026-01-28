@@ -6,6 +6,7 @@ import NavBar from '@/components/layout/NavBar';
 import { ThemeProvider } from 'next-themes';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
+import { EdgeStoreProvider } from '@/lib/edgestore';
 
 const FontInter = Inter({
   variable: '--font-inter',
@@ -27,26 +28,28 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <SessionProvider session={session}>
-      <html lang='pt-BR' suppressHydrationWarning>
-        <body
-          className={cn(
-            'antialiased flex flex-col min-h-screen px-2',
-            FontInter.variable,
-          )}
-        >
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
+    <EdgeStoreProvider>
+      <SessionProvider session={session}>
+        <html lang='pt-BR' suppressHydrationWarning>
+          <body
+            className={cn(
+              'antialiased flex flex-col min-h-screen px-2',
+              FontInter.variable,
+            )}
           >
-            <NavBar />
-            <main className='grow bg-bg'>{children}</main>
-            <footer>foooooter</footer>
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='system'
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              <main className='grow bg-bg'>{children}</main>
+              <footer>foooooter</footer>
+            </ThemeProvider>
+          </body>
+        </html>
+      </SessionProvider>
+    </EdgeStoreProvider>
   );
 }
