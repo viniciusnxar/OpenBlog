@@ -42,7 +42,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <NavBar />
-            <main className='flex-grow bg-bg'>{children}</main>
+            <main className='grow bg-bg'>{children}</main>
             <footer>foooooter</footer>
           </ThemeProvider>
         </body>

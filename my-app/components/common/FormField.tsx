@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { User } from '@/src/generated/prisma/client';
+import { User } from '@/prisma/generated/prisma/client';
 import {
   FieldErrors,
   Path,
@@ -47,7 +47,7 @@ const FormField = <T extends FieldValues>({
           'dark:focus:ring-blue-600 dark:focus:border-blue-600',
           errors &&
             'border-slate-400 focus:ring-rose-300 dark:focus:ring-rose-700',
-          inputClassNames
+          inputClassNames,
         )}
       />
       {message && <span className='text-sm text-rose-400'>{message}</span>}

@@ -1,7 +1,7 @@
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  // DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import { Bell } from 'lucide-react';
@@ -15,7 +15,7 @@ const Notifications = () => {
         </div>
         <Bell size={20} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-[100%] max-w-[400px] bg-primary'>
+      <DropdownMenuContent className='w-full max-w-100 bg-primary'>
         <div className='flex gap-4'>
           <h3 className='font-bold text-lg'>Notifications</h3>
           <button>Marcar como lido</button>
