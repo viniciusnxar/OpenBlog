@@ -13,7 +13,7 @@ const AddCover = ({ setUploadedCover, replaceUrl }: AddCoverProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const handleButtonClick = () => imgInputRef.current?.click();
-  const edgeStore = useEdgeStore();
+  const { edgestore } = useEdgeStore();
 
   useEffect(() => {
     let isMounted = true;
@@ -22,7 +22,7 @@ const AddCover = ({ setUploadedCover, replaceUrl }: AddCoverProps) => {
       setIsUploading(true);
 
       try {
-        const res = await edgeStore.publicFiles.upload({
+        const res = await edgestore.publicFiles.upload({
           file,
           options: replaceUrl ? { replaceTargetUrl: replaceUrl } : undefined,
         });
@@ -59,6 +59,7 @@ const AddCover = ({ setUploadedCover, replaceUrl }: AddCoverProps) => {
         <ImageIcon size={20} />
         <span>{!!replaceUrl ? 'Alterar Cover' : 'Add Cover'}</span>
       </button>
+      {isUploading && <p className='text-green-500'>Enviando...</p>}
     </div>
   );
 };

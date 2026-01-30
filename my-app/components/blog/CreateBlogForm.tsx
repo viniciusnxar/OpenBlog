@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import FormField from '../common/FormField';
 import AddCover from './AddCover';
 import { useState } from 'react';
+import CoverImage from './CoverImage';
 
 //userID pode ter problemas, colocar userId se tiver
 const CreateBlogForm = () => {
@@ -28,7 +29,15 @@ const CreateBlogForm = () => {
   });
   return (
     <form className='flex felx-col justify-between max-w-300 m-auto min-h-[85vh]'>
-      <AddCover setUploadedCover={setUploadedCover} />
+      {!!uploadedCover && (
+        <CoverImage
+          url={uploadedCover}
+          isEditor={true}
+          setUploadedCover={setUploadedCover}
+        />
+      )}
+      {!uploadedCover && <AddCover setUploadedCover={setUploadedCover} />}
+
       <FormField
         id='tittle'
         register={register}
