@@ -9,6 +9,7 @@ import AddCover from './AddCover';
 import { useState } from 'react';
 import CoverImage from './CoverImage';
 import { tags } from '@/lib/tags';
+import BlockNoteEditor from './editor/BlockNoteEditor';
 
 //userID pode ter problemas, colocar userId se tiver
 const CreateBlogForm = () => {
@@ -75,6 +76,7 @@ const CreateBlogForm = () => {
             })}
           </div>
         </fieldset>
+        <BlockNoteEditor onChange={onChange}/>
       </div>
     </form>
   );

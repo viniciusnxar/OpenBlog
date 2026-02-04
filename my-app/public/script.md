@@ -25,3 +25,6 @@ bun i @auth/prisma-adapter
 @next-auth/prisma-adapter
 bun i uuid
 bun i resend
+
+bun add @blocknote/core @blocknote/react @blocknote/mantine
+bun add @mantine/core @mantine/hooks @mantine/utils
