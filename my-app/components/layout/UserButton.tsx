@@ -10,10 +10,12 @@ import {
 } from '../ui/dropdown-menu';
 import { FaRegBookmark } from 'react-icons/fa';
 import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const UserButton = () => {
   const session = useSession();
   const imageUrl = session.data?.user.image || '';
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -33,7 +35,12 @@ const UserButton = () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <button className='flex items-center gap-2'>
+          <button
+            onClick={() => {
+              router.push('/blog/create');
+            }}
+            className='flex items-center gap-2'
+          >
             <Pencil size={18} />
             Create Post
           </button>

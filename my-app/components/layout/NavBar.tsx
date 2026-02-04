@@ -8,15 +8,16 @@ import UserButton from './UserButton';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const NavBar = () => {
   const session = useSession();
   const isLoggedIn = session.status === 'authenticated';
   const path = usePathname();
+  const router = useRouter();
 
-  console.log('Session', session)
-  
+  console.log('Session', session);
+
   useEffect(() => {
     if (!isLoggedIn && path) {
       const updateSession = async () => {
