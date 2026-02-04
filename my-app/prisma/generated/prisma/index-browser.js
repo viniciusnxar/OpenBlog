@@ -162,6 +162,17 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
+exports.Prisma.BlogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tittle: 'tittle',
+  content: 'content',
+  coverImage: 'coverImage',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  tags: 'tags'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,7 +196,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   EmailVerificationToken: 'EmailVerificationToken',
-  PasswordResetToken: 'PasswordResetToken'
+  PasswordResetToken: 'PasswordResetToken',
+  Blog: 'Blog'
 };
 
 /**
