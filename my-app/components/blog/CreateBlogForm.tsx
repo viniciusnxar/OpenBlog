@@ -15,6 +15,8 @@ const CreateBlogForm = () => {
   const session = useSession();
   const userID = session.data?.user.userId;
   const [uploadedCover, setUploadedCover] = useState<string>();
+  const [content, setContent] = useState<string | undefined>();
+
   console.log(uploadedCover);
   const {
     register,
@@ -28,6 +30,11 @@ const CreateBlogForm = () => {
       isPublished: false,
     },
   });
+
+  const onChange = (content: string) => {
+    setContent(content);
+  };
+
   return (
     <form className='flex flex-col justify-between max-w-300 m-auto min-h-[85vh] '>
       <div>
