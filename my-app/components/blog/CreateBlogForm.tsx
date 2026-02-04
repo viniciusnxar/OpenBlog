@@ -23,6 +23,7 @@ const CreateBlogForm = () => {
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
   const [isPublishing, startPublishing] = useTransition();
+  const [isSavingDraft, startSavingDraft] = useTransition();
 
   console.log(uploadedCover);
   const {
@@ -71,6 +72,23 @@ const CreateBlogForm = () => {
     }
     startPublishing(() => {
       CreateBlog({ ...data, isPublished: true }).then((data) => {
+        if (data.error) {
+          setError(data.error);
+        }
+        if (data.success) {
+          setSuccess(data.success);
+        }
+      });
+    });
+  };
+
+  const onSaveDraft: SubmitHandler<BlogSchemaType> = (data) => {
+    console.log('Data:', data);
+    setSuccess('');
+    setError('');
+
+    startPublishing(() => {
+      CreateBlog({ ...data, isPublished: false }).then((data) => {
         if (data.error) {
           setError(data.error);
         }
@@ -154,7 +172,11 @@ const CreateBlogForm = () => {
               label={isPublishing ? 'Publicando...' : 'Publicado!'}
               className='bg-blue-700'
             />
-            <Button type='button' label='Salvar rascunho' />
+            <Button
+              type='button'
+              label={isSavingDraft ? 'Salvando...' : 'Salvar Rascunho'}
+              onClick={handleSubmit(onSaveDraft)}
+            />
           </div>
         </div>
       </div>
