@@ -41,7 +41,7 @@ const AddCover = ({ setUploadedCover, replaceUrl }: AddCoverProps) => {
     return () => {
       isMounted = false;
     };
-  }, [file, edgeStore, replaceUrl, setUploadedCover]);
+  }, [file]);
   return (
     <div>
       <input

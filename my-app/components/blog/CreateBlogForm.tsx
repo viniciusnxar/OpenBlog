@@ -28,7 +28,7 @@ const CreateBlogForm = () => {
     },
   });
   return (
-    <form className='flex felx-col justify-between max-w-300 m-auto min-h-[85vh]'>
+    <form className='flex flex-col justify-between max-w-300 m-auto '>
       {!!uploadedCover && (
         <CoverImage
           url={uploadedCover}
@@ -37,7 +37,6 @@ const CreateBlogForm = () => {
         />
       )}
       {!uploadedCover && <AddCover setUploadedCover={setUploadedCover} />}
-
       <FormField
         id='tittle'
         register={register}

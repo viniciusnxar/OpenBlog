@@ -30,7 +30,7 @@ const CoverImage = ({ setUploadedCover, isEditor, url }: CoverImageProps) => {
             className='flex items-center gap-2 ml-4'
             type='button'
             onClick={() => {
-              handleRemoveCover;
+              handleRemoveCover(url);
             }}
           >
             <X size={20} />
