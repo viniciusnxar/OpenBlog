@@ -6,12 +6,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
 import FormField from '../common/FormField';
 import AddCover from './AddCover';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import CoverImage from './CoverImage';
 import { tags } from '@/lib/tags';
 import BlockNoteEditor from './editor/BlockNoteEditor';
 import Button from '../common/Button';
 import Alert from '../common/Alert';
+import { CreateBlog } from '@/actions/blogs/create-blog';
 
 //userID pode ter problemas, colocar userId se tiver
 const CreateBlogForm = () => {
@@ -21,6 +22,7 @@ const CreateBlogForm = () => {
   const [content, setContent] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
+  const [isPublishing, startPublishing] = useTransition();
 
   console.log(uploadedCover);
   const {
@@ -62,6 +64,21 @@ const CreateBlogForm = () => {
 
   const onPublish: SubmitHandler<BlogSchemaType> = (data) => {
     console.log('Data:', data);
+    setSuccess('');
+    setError('');
+    if (data.tags.length > 4) {
+      return setError('Selecione apenas 4 categorias');
+    }
+    startPublishing(() => {
+      CreateBlog({ ...data, isPublished: true }).then((data) => {
+        if (data.error) {
+          setError(data.error);
+        }
+        if (data.success) {
+          setSuccess(data.success);
+        }
+      });
+    });
   };
 
   console.log('errooooo:', errors);
@@ -132,7 +149,11 @@ const CreateBlogForm = () => {
             <Button type='button' label='Deletar' />
           </div>
           <div className='flex gap-4'>
-            <Button type='submit' label='Publicar' className='bg-blue-700' />
+            <Button
+              type='submit'
+              label={isPublishing ? 'Publicando...' : 'Publicado!'}
+              className='bg-blue-700'
+            />
             <Button type='button' label='Salvar rascunho' />
           </div>
         </div>
