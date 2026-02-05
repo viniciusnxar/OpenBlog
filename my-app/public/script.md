@@ -28,3 +28,4 @@ bun i resend
 
 bun add @blocknote/core @blocknote/react @blocknote/mantine
 bun add @mantine/core @mantine/hooks @mantine/utils
+bun i moment

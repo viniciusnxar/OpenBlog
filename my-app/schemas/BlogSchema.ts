@@ -1,7 +1,7 @@
 import { z } from 'zod';
 export const BlogSchema = z.object({
   userID: z.string(),
-  tittle: z
+  title: z
     .string()
     .min(10, {
       message: 'Titulo muito curto, deve ter pelo menos 10 caracteres',

@@ -5605,7 +5605,7 @@ export namespace Prisma {
   export type BlogMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    tittle: string | null
+    title: string | null
     content: string | null
     coverImage: string | null
     isPublished: boolean | null
@@ -5615,7 +5615,7 @@ export namespace Prisma {
   export type BlogMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    tittle: string | null
+    title: string | null
     content: string | null
     coverImage: string | null
     isPublished: boolean | null
@@ -5625,7 +5625,7 @@ export namespace Prisma {
   export type BlogCountAggregateOutputType = {
     id: number
     userId: number
-    tittle: number
+    title: number
     content: number
     coverImage: number
     isPublished: number
@@ -5638,7 +5638,7 @@ export namespace Prisma {
   export type BlogMinAggregateInputType = {
     id?: true
     userId?: true
-    tittle?: true
+    title?: true
     content?: true
     coverImage?: true
     isPublished?: true
@@ -5648,7 +5648,7 @@ export namespace Prisma {
   export type BlogMaxAggregateInputType = {
     id?: true
     userId?: true
-    tittle?: true
+    title?: true
     content?: true
     coverImage?: true
     isPublished?: true
@@ -5658,7 +5658,7 @@ export namespace Prisma {
   export type BlogCountAggregateInputType = {
     id?: true
     userId?: true
-    tittle?: true
+    title?: true
     content?: true
     coverImage?: true
     isPublished?: true
@@ -5742,7 +5742,7 @@ export namespace Prisma {
   export type BlogGroupByOutputType = {
     id: string
     userId: string
-    tittle: string
+    title: string
     content: string
     coverImage: string | null
     isPublished: boolean
@@ -5770,7 +5770,7 @@ export namespace Prisma {
   export type BlogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    tittle?: boolean
+    title?: boolean
     content?: boolean
     coverImage?: boolean
     isPublished?: boolean
@@ -5782,7 +5782,7 @@ export namespace Prisma {
   export type BlogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    tittle?: boolean
+    title?: boolean
     content?: boolean
     coverImage?: boolean
     isPublished?: boolean
@@ -5794,7 +5794,7 @@ export namespace Prisma {
   export type BlogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    tittle?: boolean
+    title?: boolean
     content?: boolean
     coverImage?: boolean
     isPublished?: boolean
@@ -5806,7 +5806,7 @@ export namespace Prisma {
   export type BlogSelectScalar = {
     id?: boolean
     userId?: boolean
-    tittle?: boolean
+    title?: boolean
     content?: boolean
     coverImage?: boolean
     isPublished?: boolean
@@ -5814,7 +5814,7 @@ export namespace Prisma {
     tags?: boolean
   }
 
-  export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tittle" | "content" | "coverImage" | "isPublished" | "createdAt" | "tags", ExtArgs["result"]["blog"]>
+  export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "content" | "coverImage" | "isPublished" | "createdAt" | "tags", ExtArgs["result"]["blog"]>
   export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -5833,7 +5833,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      tittle: string
+      title: string
       content: string
       coverImage: string | null
       isPublished: boolean
@@ -6265,7 +6265,7 @@ export namespace Prisma {
   interface BlogFieldRefs {
     readonly id: FieldRef<"Blog", 'String'>
     readonly userId: FieldRef<"Blog", 'String'>
-    readonly tittle: FieldRef<"Blog", 'String'>
+    readonly title: FieldRef<"Blog", 'String'>
     readonly content: FieldRef<"Blog", 'String'>
     readonly coverImage: FieldRef<"Blog", 'String'>
     readonly isPublished: FieldRef<"Blog", 'Boolean'>
@@ -6756,7 +6756,7 @@ export namespace Prisma {
   export const BlogScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    tittle: 'tittle',
+    title: 'title',
     content: 'content',
     coverImage: 'coverImage',
     isPublished: 'isPublished',
@@ -7152,7 +7152,7 @@ export namespace Prisma {
     NOT?: BlogWhereInput | BlogWhereInput[]
     id?: StringFilter<"Blog"> | string
     userId?: StringFilter<"Blog"> | string
-    tittle?: StringFilter<"Blog"> | string
+    title?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     coverImage?: StringNullableFilter<"Blog"> | string | null
     isPublished?: BoolFilter<"Blog"> | boolean
@@ -7164,7 +7164,7 @@ export namespace Prisma {
   export type BlogOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    tittle?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     coverImage?: SortOrderInput | SortOrder
     isPublished?: SortOrder
@@ -7179,7 +7179,7 @@ export namespace Prisma {
     OR?: BlogWhereInput[]
     NOT?: BlogWhereInput | BlogWhereInput[]
     userId?: StringFilter<"Blog"> | string
-    tittle?: StringFilter<"Blog"> | string
+    title?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     coverImage?: StringNullableFilter<"Blog"> | string | null
     isPublished?: BoolFilter<"Blog"> | boolean
@@ -7191,7 +7191,7 @@ export namespace Prisma {
   export type BlogOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    tittle?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     coverImage?: SortOrderInput | SortOrder
     isPublished?: SortOrder
@@ -7208,7 +7208,7 @@ export namespace Prisma {
     NOT?: BlogScalarWhereWithAggregatesInput | BlogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Blog"> | string
     userId?: StringWithAggregatesFilter<"Blog"> | string
-    tittle?: StringWithAggregatesFilter<"Blog"> | string
+    title?: StringWithAggregatesFilter<"Blog"> | string
     content?: StringWithAggregatesFilter<"Blog"> | string
     coverImage?: StringNullableWithAggregatesFilter<"Blog"> | string | null
     isPublished?: BoolWithAggregatesFilter<"Blog"> | boolean
@@ -7519,7 +7519,7 @@ export namespace Prisma {
 
   export type BlogCreateInput = {
     id?: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -7531,7 +7531,7 @@ export namespace Prisma {
   export type BlogUncheckedCreateInput = {
     id?: string
     userId: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -7541,7 +7541,7 @@ export namespace Prisma {
 
   export type BlogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -7553,7 +7553,7 @@ export namespace Prisma {
   export type BlogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -7564,7 +7564,7 @@ export namespace Prisma {
   export type BlogCreateManyInput = {
     id?: string
     userId: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -7574,7 +7574,7 @@ export namespace Prisma {
 
   export type BlogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -7585,7 +7585,7 @@ export namespace Prisma {
   export type BlogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -7938,7 +7938,7 @@ export namespace Prisma {
   export type BlogCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    tittle?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     coverImage?: SortOrder
     isPublished?: SortOrder
@@ -7949,7 +7949,7 @@ export namespace Prisma {
   export type BlogMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    tittle?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     coverImage?: SortOrder
     isPublished?: SortOrder
@@ -7959,7 +7959,7 @@ export namespace Prisma {
   export type BlogMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    tittle?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     coverImage?: SortOrder
     isPublished?: SortOrder
@@ -8360,7 +8360,7 @@ export namespace Prisma {
 
   export type BlogCreateWithoutUserInput = {
     id?: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -8370,7 +8370,7 @@ export namespace Prisma {
 
   export type BlogUncheckedCreateWithoutUserInput = {
     id?: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -8445,7 +8445,7 @@ export namespace Prisma {
     NOT?: BlogScalarWhereInput | BlogScalarWhereInput[]
     id?: StringFilter<"Blog"> | string
     userId?: StringFilter<"Blog"> | string
-    tittle?: StringFilter<"Blog"> | string
+    title?: StringFilter<"Blog"> | string
     content?: StringFilter<"Blog"> | string
     coverImage?: StringNullableFilter<"Blog"> | string | null
     isPublished?: BoolFilter<"Blog"> | boolean
@@ -8606,7 +8606,7 @@ export namespace Prisma {
 
   export type BlogCreateManyUserInput = {
     id?: string
-    tittle: string
+    title: string
     content: string
     coverImage?: string | null
     isPublished?: boolean
@@ -8661,7 +8661,7 @@ export namespace Prisma {
 
   export type BlogUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -8671,7 +8671,7 @@ export namespace Prisma {
 
   export type BlogUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
@@ -8681,7 +8681,7 @@ export namespace Prisma {
 
   export type BlogUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tittle?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     coverImage?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean

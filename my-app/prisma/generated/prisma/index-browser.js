@@ -165,7 +165,7 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
 exports.Prisma.BlogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  tittle: 'tittle',
+  title: 'title',
   content: 'content',
   coverImage: 'coverImage',
   isPublished: 'isPublished',

@@ -22,7 +22,7 @@ export const CreateBlog = async (values: BlogSchemaType) => {
   await db.blog.create({
     data: {
       userId: vFields.data.userID,
-      tittle: vFields.data.tittle,
+      title: vFields.data.title,
       content: vFields.data.content,
       isPublished: vFields.data.isPublished,
       tags: vFields.data.tags,

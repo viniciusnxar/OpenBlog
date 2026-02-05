@@ -116,7 +116,7 @@ const CreateBlogForm = () => {
         )}
         {!uploadedCover && <AddCover setUploadedCover={setUploadedCover} />}
         <FormField
-          id='tittle'
+          id='title'
           register={register}
           errors={errors}
           placeholder='Titulo Blog'
@@ -169,7 +169,7 @@ const CreateBlogForm = () => {
           <div className='flex gap-4'>
             <Button
               type='submit'
-              label={isPublishing ? 'Publicando...' : 'Publicado!'}
+              label={isPublishing ? 'Publicando...' : 'Publicar'}
               className='bg-blue-700'
             />
             <Button
