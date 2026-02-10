@@ -4,14 +4,17 @@ import Alert from '@/components/common/Alert';
 
 interface BlogFeedProps {
   params: Promise<{ page: string }>;
+  searchParams: Promise<{ tag: string; title: string }>;
 }
 
-const BlogFeed = async ({ params }: BlogFeedProps) => {
+const BlogFeed = async ({ params, searchParams }: BlogFeedProps) => {
   const { page } = await params;
+  const searchObject = await searchParams;
   const currentPage = parseInt(page, 10) || 1;
   const { success, error } = await getPublishedBlogs({
     page: currentPage,
     limit: 5,
+    searchObject,
   });
 
   if (error) return <Alert error message='Erro ao acessar blogs' />;

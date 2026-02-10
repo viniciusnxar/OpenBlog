@@ -4,10 +4,10 @@ import { db } from '@/lib/db';
 import { getUserById } from '@/lib/user';
 import { BlogSchema, BlogSchemaType } from '@/schemas/BlogSchema';
 
-export const CreateBlog = async (values: BlogSchemaType) => {
+export const editBlog = async (values: BlogSchemaType, blogId: string) => {
   const vFields = BlogSchema.safeParse(values);
 
-  if (!vFields.success) return { error: 'Campos Invalidos!!' };
+  if (!vFields.success) return { error: 'Invalid Fields!' };
 
   const { userId, isPublished } = vFields.data;
 
@@ -18,16 +18,17 @@ export const CreateBlog = async (values: BlogSchemaType) => {
   if (!isPublished && !user.emailVerified) {
     return { error: 'Entrada não autorizada, Verifique seu e-mail antes' };
   }
-  //atençao
-  await db.blog.create({
-    data: {
-      userId: vFields.data.userId,
-      title: vFields.data.title,
-      content: vFields.data.content,
-      isPublished: vFields.data.isPublished,
-      tags: vFields.data.tags,
-      coverImage: vFields.data.coverImage,
-    },
+
+  const blog = await db.blog.findUnique({
+    where: { id: blogId },
   });
-  return { success: 'Blog Salvo!' };
+
+  if (!blog) return { error: 'Blog not found!' };
+
+  await db.blog.update({
+    where: { id: blogId },
+    data: { ...vFields.data },
+  });
+
+  return { success: 'Blog Updated' };
 };

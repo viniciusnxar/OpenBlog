@@ -13,11 +13,13 @@ import BlockNoteEditor from './editor/BlockNoteEditor';
 import Button from '../common/Button';
 import Alert from '../common/Alert';
 import { CreateBlog } from '@/actions/blogs/create-blog';
+import { Blog } from '@/prisma/generated/prisma';
+import { editBlog } from '@/actions/blogs/edit-blog';
 
-//userID pode ter problemas, colocar userId se tiver
-const CreateBlogForm = () => {
+//userId pode ter problemas, colocar userId se tiver
+const CreateBlogForm = ({ blog }: { blog?: Blog }) => {
   const session = useSession();
-  const userID = session.data?.user.userId;
+  const userId = session.data?.user.userId;
   const [uploadedCover, setUploadedCover] = useState<string>();
   const [content, setContent] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>('');
@@ -33,10 +35,19 @@ const CreateBlogForm = () => {
     setValue,
   } = useForm<BlogSchemaType>({
     resolver: zodResolver(BlogSchema),
-    defaultValues: {
-      userID,
-      isPublished: false,
-    },
+    defaultValues: blog
+      ? {
+          userId: blog.userId,
+          isPublished: blog.isPublished,
+          title: blog.title,
+          content: blog.content,
+          coverImage: blog.coverImage || undefined,
+          tags: blog.tags,
+        }
+      : {
+          userId,
+          isPublished: false,
+        },
   });
 
   useEffect(() => {
@@ -59,6 +70,12 @@ const CreateBlogForm = () => {
     }
   }, [content]);
 
+  useEffect(() => {
+    if (blog?.coverImage) {
+      setUploadedCover(blog.coverImage);
+    }
+  }, [blog?.coverImage]);
+
   const onChange = (content: string) => {
     setContent(content);
   };
@@ -71,14 +88,26 @@ const CreateBlogForm = () => {
       return setError('Selecione apenas 4 categorias');
     }
     startPublishing(() => {
-      CreateBlog({ ...data, isPublished: true }).then((data) => {
-        if (data.error) {
-          setError(data.error);
-        }
-        if (data.success) {
-          setSuccess(data.success);
-        }
-      });
+      if (blog) {
+        editBlog({ ...data, isPublished: true }, blog.id).then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+
+          if (data.success) {
+            setSuccess(data.success);
+          }
+        });
+      } else {
+        CreateBlog({ ...data, isPublished: true }).then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+          if (data.success) {
+            setSuccess(data.success);
+          }
+        });
+      }
     });
   };
 
@@ -87,15 +116,27 @@ const CreateBlogForm = () => {
     setSuccess('');
     setError('');
 
-    startPublishing(() => {
-      CreateBlog({ ...data, isPublished: false }).then((data) => {
-        if (data.error) {
-          setError(data.error);
-        }
-        if (data.success) {
-          setSuccess(data.success);
-        }
-      });
+    startSavingDraft(() => {
+      if (blog) {
+        editBlog({ ...data, isPublished: false }, blog.id).then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+
+          if (data.success) {
+            setSuccess(data.success);
+          }
+        });
+      } else {
+        CreateBlog({ ...data, isPublished: false }).then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+          if (data.success) {
+            setSuccess(data.success);
+          }
+        });
+      }
     });
   };
 
@@ -149,7 +190,10 @@ const CreateBlogForm = () => {
             </span>
           )}
         </fieldset>
-        <BlockNoteEditor onChange={onChange} />
+        <BlockNoteEditor
+          onChange={onChange}
+          initialContent={blog?.content ? blog.content : ''}
+        />
         {errors.content && errors.content.message && (
           <span className='text-sm text-rose-400'>
             {errors.content.message}
@@ -157,8 +201,8 @@ const CreateBlogForm = () => {
         )}
       </div>
       <div className='border-t pt-2'>
-        {errors.userID && errors.userID.message && (
-          <span className='text-sm text-rose-400'>Está faltando o UserID</span>
+        {errors.userId && errors.userId.message && (
+          <span className='text-sm text-rose-400'>Está faltando o userId</span>
         )}
         {success && <Alert message={success} success />}
         {error && <Alert message={error} error />}

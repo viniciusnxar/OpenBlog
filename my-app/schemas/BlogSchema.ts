@@ -1,6 +1,6 @@
 import { z } from 'zod';
 export const BlogSchema = z.object({
-  userID: z.string(),
+  userId: z.string(),
   title: z
     .string()
     .min(10, {
