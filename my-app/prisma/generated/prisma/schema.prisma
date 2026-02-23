@@ -8,14 +8,16 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String     @unique
   password      String?
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   blogs         Blog[]
+  claps         Clap[]
+  bookmark      Bookmark[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -64,13 +66,39 @@ enum UserRole {
 }
 
 model Blog {
-  id          String   @id @default(cuid())
+  id          String     @id @default(cuid())
   userId      String
   title       String
   content     String
   coverImage  String?
-  isPublished Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  isPublished Boolean    @default(false)
+  createdAt   DateTime   @default(now())
   tags        String[]
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  claps       Clap[]
+  bookmark    Bookmark[]
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Clap {
+  id        String   @id @default(cuid())
+  userId    String
+  blogId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, blogId])
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  blogId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, blogId])
 }

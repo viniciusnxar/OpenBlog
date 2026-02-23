@@ -1,10 +1,15 @@
-import BlogCard from '@/app/blog/BlogCard';
+import BlogCard from '@/components/blog/BlogCard';
 import { Blog, User } from '@/prisma/generated/prisma';
-import Link from 'next/link';
 import Pagination from './Pagination';
 
 export type BlogwithUser = Blog & {
   user: Pick<User, 'id' | 'name' | 'image'>;
+  _count: {
+    claps: number;
+  };
+  claps: {
+    id: string;
+  }[];
 };
 interface ListBlogsProps {
   blogs: BlogwithUser[];

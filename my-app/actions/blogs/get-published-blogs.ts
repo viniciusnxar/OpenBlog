@@ -1,5 +1,6 @@
 'use server';
 
+import { auth } from '@/auth';
 import { db } from '@/lib/db';
 
 export const getPublishedBlogs = async ({
@@ -13,7 +14,8 @@ export const getPublishedBlogs = async ({
 }) => {
   const skip = (page - 1) * limit;
   const { tag, title } = searchObject;
-
+  const session = await auth();
+  const userId = session?.user.userId;
   try {
     const blogs = await db.blog.findMany({
       skip,
@@ -30,6 +32,27 @@ export const getPublishedBlogs = async ({
             id: true,
             name: true,
             image: true,
+          },
+        },
+        _count: {
+          select: {
+            claps: true,
+          },
+        },
+        claps: {
+          where: {
+            userId,
+          },
+          select: {
+            id: true,
+          },
+        },
+        bookmark: {
+          where: {
+            userId,
+          },
+          select: {
+            id: true,
           },
         },
       },
