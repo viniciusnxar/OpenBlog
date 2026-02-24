@@ -2,7 +2,7 @@
 import { Search } from 'lucide-react';
 import { Input } from '../ui/input';
 import { ChangeEventHandler, useEffect, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import queryString from 'query-string';
 import { useDebounceValue } from '@/hooks/useeDebounceValues';
 
@@ -11,7 +11,7 @@ const SearchInput = () => {
   const title = params.get('title');
   const router = useRouter();
   const [value, setValue] = useState(title || '');
-  const pathName = usePathname();
+
 
   const debounceValue = useDebounceValue<string>(value);
 
@@ -28,7 +28,7 @@ const SearchInput = () => {
     };
     const url = queryString.stringifyUrl(
       {
-        url: '/blog/feed/1',
+        url: window.location.href,
         query: updatedQuery,
       },
       {
@@ -41,8 +41,9 @@ const SearchInput = () => {
   const handlOnChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
-  const isFeedsPage = pathName.includes('/blog/feed');
-  if (!isFeedsPage) return null;
+
+
+
   return (
     <div className='relative hidden sm:block'>
       <Search className='absolute top-3 left-4 h-4 w-4 text-muted-foreground' />

@@ -22,7 +22,7 @@ const BlogCard = ({
       <div className='my-2 flex justify-between gap-6'>
         <div className='flex flex-col justify-between w-full'>
           <Link
-            href={`/blog/${blog.id}`}
+            href={`/blog/details/${blog.id}`}
             className='text-xl sm:text-2xl font-bold'
           >
             {blog.title}
@@ -39,7 +39,7 @@ const BlogCard = ({
 
         {blog.coverImage && (
           <Link
-            href={`/blog/${blog.id}`}
+            href={`/blog/details/${blog.id}`}
             className='w-full max-w-40 h-25 relative overflow-hidden'
           >
             <Image

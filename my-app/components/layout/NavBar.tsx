@@ -16,6 +16,7 @@ const NavBar = () => {
   const isLoggedIn = session.status === 'authenticated';
   const path = usePathname();
   const router = useRouter();
+  const isFeedsPage = path.includes('/blog/feed');
 
   console.log('Session', session);
 
@@ -37,7 +38,7 @@ const NavBar = () => {
               Openblog
             </div>
           </div>
-          <SearchInput />
+          {isFeedsPage && <SearchInput />}
           <div className='flex gap-5 sn:gap-8 items-center'>
             <ThemeToggle />
             {isLoggedIn && <Notifications />}

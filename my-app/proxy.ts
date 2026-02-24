@@ -9,6 +9,12 @@ import {
 
 export const { auth: middleware } = NextAuth(authConfig);
 
+const checkIsPublicRoute = (pathname: string) => {
+  return publicRoutes.some((route) =>
+    typeof route === 'string' ? route === pathname : route.test(pathname),
+  );
+};
+
 export default middleware((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
@@ -17,7 +23,7 @@ export default middleware((req) => {
 
   // console.log('Pathname:', nextUrl.pathname, isLoggedIn);
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isPublicRoute = checkIsPublicRoute(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) {
