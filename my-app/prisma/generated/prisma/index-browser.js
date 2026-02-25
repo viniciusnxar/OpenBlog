@@ -187,6 +187,16 @@ exports.Prisma.BookmarkScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  blogId: 'blogId',
+  userId: 'userId',
+  parentId: 'parentId',
+  repliedToUserId: 'repliedToUserId',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -213,7 +223,8 @@ exports.Prisma.ModelName = {
   PasswordResetToken: 'PasswordResetToken',
   Blog: 'Blog',
   Clap: 'Clap',
-  Bookmark: 'Bookmark'
+  Bookmark: 'Bookmark',
+  Comment: 'Comment'
 };
 
 /**
