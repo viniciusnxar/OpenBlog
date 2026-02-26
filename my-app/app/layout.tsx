@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes';
 import { auth } from '@/auth';
 import { SessionProvider } from 'next-auth/react';
 import { EdgeStoreProvider } from '@/lib/edgestore';
+import { Toaster } from 'react-hot-toast';
 
 const FontInter = Inter({
   variable: '--font-inter',
@@ -37,6 +38,12 @@ export default async function RootLayout({
               FontInter.variable,
             )}
           >
+            <Toaster
+              position='bottom-center'
+              toastOptions={{
+                style: { background: 'rgb(51 65 85 )', color: '#fff' },
+              }}
+            />
             <ThemeProvider
               attribute='class'
               defaultTheme='system'
