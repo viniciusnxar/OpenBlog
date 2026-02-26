@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import Link from 'next/link';
 import './editor.css';
+import Comments from '@/components/Comments/Comments';
 
 interface BlogContentProps {
   params: Promise<{ id: string }>;
@@ -64,6 +65,8 @@ const BlogContent = async ({ params }: BlogContentProps) => {
       <div>
         <BlockNoteEditor editable={false} initialContent={blog.content} />
       </div>
+      <Separator />
+      <Comments blog={blog} />
     </div>
   );
 };

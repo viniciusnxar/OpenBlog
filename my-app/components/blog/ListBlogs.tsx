@@ -2,7 +2,7 @@ import BlogCard from '@/components/blog/BlogCard';
 import { Blog, User } from '@/prisma/generated/prisma';
 import Pagination from './Pagination';
 
-export type BlogwithUser = Blog & {
+export type BlogWithUser = Blog & {
   user: Pick<User, 'id' | 'name' | 'image'>;
   _count: {
     claps: number;
@@ -15,7 +15,7 @@ export type BlogwithUser = Blog & {
   }[];
 };
 interface ListBlogsProps {
-  blogs: BlogwithUser[];
+  blogs: BlogWithUser[];
   hasMore: boolean;
   currentPage: number;
   isUserProfile?: boolean;
