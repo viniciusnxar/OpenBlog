@@ -23,6 +23,10 @@ const CommentReactions = ({
 }: CommentReactionsProps) => {
   const session = useSession();
   const userId = session.data?.user.userId;
+
+  const handleReply = () => {
+    setShowForm((prev) => !prev);
+  };
   return (
     <div
       className={cn(
@@ -30,7 +34,7 @@ const CommentReactions = ({
         isReply && 'justify-start ml-2',
       )}
     >
-      <div>
+      <div className='flex items-center gap-4'>
         <span className='flex items-center gap-1 cursor-pointer'>
           <FaHandsClapping size={20} /> {4}
         </span>
@@ -44,7 +48,10 @@ const CommentReactions = ({
         )}
       </div>
       <div className='flex items-center'>
-        <span className='flex items-center gap-1 cursor-pointer mr-4'>
+        <span
+          onClick={handleReply}
+          className='flex items-center gap-1 cursor-pointer mr-4'
+        >
           <BsReply size={20} />
           Reply
         </span>
