@@ -5,6 +5,7 @@ import UserSummary from '../blog/UserSummary';
 import { CommentWithUser } from './ListComments';
 import CommentReactions from './CommentReactions';
 import AddCommentsForm from './AddCommentsForm';
+import ListReplies from './ListReplies';
 import { useSession } from 'next-auth/react';
 
 const CommentCard = ({ comment }: { comment: CommentWithUser }) => {
@@ -35,6 +36,7 @@ const CommentCard = ({ comment }: { comment: CommentWithUser }) => {
               placeholder='Add Reply'
             />
           )}
+          {showReplies && <ListReplies comment={comment} userId={userId} />}
         </div>
       )}
     </div>

@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 interface CommentReactionsProps {
   comment: CommentWithUser;
   setShowForm: Dispatch<SetStateAction<boolean>>;
-  setShowReplies: Dispatch<SetStateAction<boolean>>;
+  setShowReplies?: Dispatch<SetStateAction<boolean>>;
   isReply?: boolean;
 }
 
@@ -27,6 +27,13 @@ const CommentReactions = ({
   const handleReply = () => {
     setShowForm((prev) => !prev);
   };
+
+  const handleShowReplies = () => {
+    if (setShowReplies) {
+      setShowReplies((prev) => !prev);
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -40,6 +47,7 @@ const CommentReactions = ({
         </span>
         {!isReply && (
           <span
+            onClick={handleShowReplies}
             className='flex items-center gap-1
         cursor-pointer'
           >
