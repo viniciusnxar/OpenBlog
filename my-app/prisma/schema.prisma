@@ -19,7 +19,7 @@ model User {
   likes Like[]
   commentLike CommentLike[]
   bookmark Bookmark[]
-  coments Comment[]
+  comments Comment[]
   repliedToComments Comment[] @relation("ReplyToUser")
 
   createdAt DateTime  @default(now())
@@ -79,7 +79,7 @@ model Blog{
   tags String[]
   likes Like[]
   bookmark Bookmark[]
-  coments Comment[]
+  comments Comment[]
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

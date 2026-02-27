@@ -36,6 +36,7 @@ export const getBookmarks = async ({
             _count: {
               select: {
                 likes: true,
+                comments: true,
               },
             },
             likes: {

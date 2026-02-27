@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import { BlogWithUser } from '../blog/ListBlogs';
 import Heading from '../common/Heading';
 import AddCommentsForm from './AddCommentsForm';
-import { getComments } from '@/actions/comments/get-coments';
+import { getComments } from '@/actions/comments/get-comments';
 import ListComments from './ListComments';
 
 const Comments = async ({ blog }: { blog: BlogWithUser }) => {

@@ -5,7 +5,8 @@ import Pagination from './Pagination';
 export type BlogWithUser = Blog & {
   user: Pick<User, 'id' | 'name' | 'image'>;
   _count: {
-    likes: number;
+    likes: number
+    comments: number
   };
   likes: {
     id: string;

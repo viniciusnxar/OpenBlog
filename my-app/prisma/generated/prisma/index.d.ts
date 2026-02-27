@@ -1612,7 +1612,7 @@ export namespace Prisma {
     likes: number
     commentLike: number
     bookmark: number
-    coments: number
+    comments: number
     repliedToComments: number
   }
 
@@ -1622,7 +1622,7 @@ export namespace Prisma {
     likes?: boolean | UserCountOutputTypeCountLikesArgs
     commentLike?: boolean | UserCountOutputTypeCountCommentLikeArgs
     bookmark?: boolean | UserCountOutputTypeCountBookmarkArgs
-    coments?: boolean | UserCountOutputTypeCountComentsArgs
+    comments?: boolean | UserCountOutputTypeCountCommentsArgs
     repliedToComments?: boolean | UserCountOutputTypeCountRepliedToCommentsArgs
   }
 
@@ -1675,7 +1675,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountComentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
   }
 
@@ -1694,13 +1694,13 @@ export namespace Prisma {
   export type BlogCountOutputType = {
     likes: number
     bookmark: number
-    coments: number
+    comments: number
   }
 
   export type BlogCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     likes?: boolean | BlogCountOutputTypeCountLikesArgs
     bookmark?: boolean | BlogCountOutputTypeCountBookmarkArgs
-    coments?: boolean | BlogCountOutputTypeCountComentsArgs
+    comments?: boolean | BlogCountOutputTypeCountCommentsArgs
   }
 
   // Custom InputTypes
@@ -1731,7 +1731,7 @@ export namespace Prisma {
   /**
    * BlogCountOutputType without action
    */
-  export type BlogCountOutputTypeCountComentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BlogCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
   }
 
@@ -1981,7 +1981,7 @@ export namespace Prisma {
     likes?: boolean | User$likesArgs<ExtArgs>
     commentLike?: boolean | User$commentLikeArgs<ExtArgs>
     bookmark?: boolean | User$bookmarkArgs<ExtArgs>
-    coments?: boolean | User$comentsArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
     repliedToComments?: boolean | User$repliedToCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2029,7 +2029,7 @@ export namespace Prisma {
     likes?: boolean | User$likesArgs<ExtArgs>
     commentLike?: boolean | User$commentLikeArgs<ExtArgs>
     bookmark?: boolean | User$bookmarkArgs<ExtArgs>
-    coments?: boolean | User$comentsArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
     repliedToComments?: boolean | User$repliedToCommentsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2044,7 +2044,7 @@ export namespace Prisma {
       likes: Prisma.$LikePayload<ExtArgs>[]
       commentLike: Prisma.$CommentLikePayload<ExtArgs>[]
       bookmark: Prisma.$BookmarkPayload<ExtArgs>[]
-      coments: Prisma.$CommentPayload<ExtArgs>[]
+      comments: Prisma.$CommentPayload<ExtArgs>[]
       repliedToComments: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2456,7 +2456,7 @@ export namespace Prisma {
     likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     commentLike<T extends User$commentLikeArgs<ExtArgs> = {}>(args?: Subset<T, User$commentLikeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bookmark<T extends User$bookmarkArgs<ExtArgs> = {}>(args?: Subset<T, User$bookmarkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    coments<T extends User$comentsArgs<ExtArgs> = {}>(args?: Subset<T, User$comentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     repliedToComments<T extends User$repliedToCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$repliedToCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3004,9 +3004,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.coments
+   * User.comments
    */
-  export type User$comentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Comment
      */
@@ -6416,7 +6416,7 @@ export namespace Prisma {
     tags?: boolean
     likes?: boolean | Blog$likesArgs<ExtArgs>
     bookmark?: boolean | Blog$bookmarkArgs<ExtArgs>
-    coments?: boolean | Blog$comentsArgs<ExtArgs>
+    comments?: boolean | Blog$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | BlogCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blog"]>
@@ -6460,7 +6460,7 @@ export namespace Prisma {
   export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     likes?: boolean | Blog$likesArgs<ExtArgs>
     bookmark?: boolean | Blog$bookmarkArgs<ExtArgs>
-    coments?: boolean | Blog$comentsArgs<ExtArgs>
+    comments?: boolean | Blog$commentsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | BlogCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -6476,7 +6476,7 @@ export namespace Prisma {
     objects: {
       likes: Prisma.$LikePayload<ExtArgs>[]
       bookmark: Prisma.$BookmarkPayload<ExtArgs>[]
-      coments: Prisma.$CommentPayload<ExtArgs>[]
+      comments: Prisma.$CommentPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6884,7 +6884,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     likes<T extends Blog$likesArgs<ExtArgs> = {}>(args?: Subset<T, Blog$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bookmark<T extends Blog$bookmarkArgs<ExtArgs> = {}>(args?: Subset<T, Blog$bookmarkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    coments<T extends Blog$comentsArgs<ExtArgs> = {}>(args?: Subset<T, Blog$comentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends Blog$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Blog$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7367,9 +7367,9 @@ export namespace Prisma {
   }
 
   /**
-   * Blog.coments
+   * Blog.comments
    */
-  export type Blog$comentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Blog$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Comment
      */
@@ -12024,7 +12024,7 @@ export namespace Prisma {
     likes?: LikeListRelationFilter
     commentLike?: CommentLikeListRelationFilter
     bookmark?: BookmarkListRelationFilter
-    coments?: CommentListRelationFilter
+    comments?: CommentListRelationFilter
     repliedToComments?: CommentListRelationFilter
   }
 
@@ -12043,7 +12043,7 @@ export namespace Prisma {
     likes?: LikeOrderByRelationAggregateInput
     commentLike?: CommentLikeOrderByRelationAggregateInput
     bookmark?: BookmarkOrderByRelationAggregateInput
-    coments?: CommentOrderByRelationAggregateInput
+    comments?: CommentOrderByRelationAggregateInput
     repliedToComments?: CommentOrderByRelationAggregateInput
   }
 
@@ -12065,7 +12065,7 @@ export namespace Prisma {
     likes?: LikeListRelationFilter
     commentLike?: CommentLikeListRelationFilter
     bookmark?: BookmarkListRelationFilter
-    coments?: CommentListRelationFilter
+    comments?: CommentListRelationFilter
     repliedToComments?: CommentListRelationFilter
   }, "id" | "email">
 
@@ -12305,7 +12305,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"Blog">
     likes?: LikeListRelationFilter
     bookmark?: BookmarkListRelationFilter
-    coments?: CommentListRelationFilter
+    comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -12320,7 +12320,7 @@ export namespace Prisma {
     tags?: SortOrder
     likes?: LikeOrderByRelationAggregateInput
     bookmark?: BookmarkOrderByRelationAggregateInput
-    coments?: CommentOrderByRelationAggregateInput
+    comments?: CommentOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
   }
 
@@ -12338,7 +12338,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"Blog">
     likes?: LikeListRelationFilter
     bookmark?: BookmarkListRelationFilter
-    coments?: CommentListRelationFilter
+    comments?: CommentListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -12627,7 +12627,7 @@ export namespace Prisma {
     likes?: LikeCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -12646,7 +12646,7 @@ export namespace Prisma {
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -12665,7 +12665,7 @@ export namespace Prisma {
     likes?: LikeUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -12684,7 +12684,7 @@ export namespace Prisma {
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -12943,7 +12943,7 @@ export namespace Prisma {
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeCreateNestedManyWithoutBlogInput
     bookmark?: BookmarkCreateNestedManyWithoutBlogInput
-    coments?: CommentCreateNestedManyWithoutBlogInput
+    comments?: CommentCreateNestedManyWithoutBlogInput
     user: UserCreateNestedOneWithoutBlogsInput
   }
 
@@ -12958,7 +12958,7 @@ export namespace Prisma {
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeUncheckedCreateNestedManyWithoutBlogInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutBlogInput
-    coments?: CommentUncheckedCreateNestedManyWithoutBlogInput
+    comments?: CommentUncheckedCreateNestedManyWithoutBlogInput
   }
 
   export type BlogUpdateInput = {
@@ -12971,7 +12971,7 @@ export namespace Prisma {
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUpdateManyWithoutBlogNestedInput
     bookmark?: BookmarkUpdateManyWithoutBlogNestedInput
-    coments?: CommentUpdateManyWithoutBlogNestedInput
+    comments?: CommentUpdateManyWithoutBlogNestedInput
     user?: UserUpdateOneRequiredWithoutBlogsNestedInput
   }
 
@@ -12986,7 +12986,7 @@ export namespace Prisma {
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUncheckedUpdateManyWithoutBlogNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutBlogNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
   }
 
   export type BlogCreateManyInput = {
@@ -13119,8 +13119,8 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
-    user: UserCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     replies?: CommentCreateNestedManyWithoutParentInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
@@ -13143,8 +13143,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
@@ -14330,15 +14330,15 @@ export namespace Prisma {
     update?: XOR<XOR<BlogUpdateToOneWithWhereWithoutBookmarkInput, BlogUpdateWithoutBookmarkInput>, BlogUncheckedUpdateWithoutBookmarkInput>
   }
 
-  export type BlogCreateNestedOneWithoutComentsInput = {
-    create?: XOR<BlogCreateWithoutComentsInput, BlogUncheckedCreateWithoutComentsInput>
-    connectOrCreate?: BlogCreateOrConnectWithoutComentsInput
+  export type BlogCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<BlogCreateWithoutCommentsInput, BlogUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: BlogCreateOrConnectWithoutCommentsInput
     connect?: BlogWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutComentsInput = {
-    create?: XOR<UserCreateWithoutComentsInput, UserUncheckedCreateWithoutComentsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutComentsInput
+  export type UserCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -14382,20 +14382,20 @@ export namespace Prisma {
     connect?: CommentLikeWhereUniqueInput | CommentLikeWhereUniqueInput[]
   }
 
-  export type BlogUpdateOneRequiredWithoutComentsNestedInput = {
-    create?: XOR<BlogCreateWithoutComentsInput, BlogUncheckedCreateWithoutComentsInput>
-    connectOrCreate?: BlogCreateOrConnectWithoutComentsInput
-    upsert?: BlogUpsertWithoutComentsInput
+  export type BlogUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<BlogCreateWithoutCommentsInput, BlogUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: BlogCreateOrConnectWithoutCommentsInput
+    upsert?: BlogUpsertWithoutCommentsInput
     connect?: BlogWhereUniqueInput
-    update?: XOR<XOR<BlogUpdateToOneWithWhereWithoutComentsInput, BlogUpdateWithoutComentsInput>, BlogUncheckedUpdateWithoutComentsInput>
+    update?: XOR<XOR<BlogUpdateToOneWithWhereWithoutCommentsInput, BlogUpdateWithoutCommentsInput>, BlogUncheckedUpdateWithoutCommentsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutComentsNestedInput = {
-    create?: XOR<UserCreateWithoutComentsInput, UserUncheckedCreateWithoutComentsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutComentsInput
-    upsert?: UserUpsertWithoutComentsInput
+  export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    upsert?: UserUpsertWithoutCommentsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutComentsInput, UserUpdateWithoutComentsInput>, UserUncheckedUpdateWithoutComentsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
   }
 
   export type CommentUpdateOneWithoutRepliesNestedInput = {
@@ -14743,7 +14743,7 @@ export namespace Prisma {
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeCreateNestedManyWithoutBlogInput
     bookmark?: BookmarkCreateNestedManyWithoutBlogInput
-    coments?: CommentCreateNestedManyWithoutBlogInput
+    comments?: CommentCreateNestedManyWithoutBlogInput
   }
 
   export type BlogUncheckedCreateWithoutUserInput = {
@@ -14756,7 +14756,7 @@ export namespace Prisma {
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeUncheckedCreateNestedManyWithoutBlogInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutBlogInput
-    coments?: CommentUncheckedCreateNestedManyWithoutBlogInput
+    comments?: CommentUncheckedCreateNestedManyWithoutBlogInput
   }
 
   export type BlogCreateOrConnectWithoutUserInput = {
@@ -14839,7 +14839,7 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     replies?: CommentCreateNestedManyWithoutParentInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
@@ -14871,8 +14871,8 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
-    user: UserCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     replies?: CommentCreateNestedManyWithoutParentInput
     likes?: CommentLikeCreateNestedManyWithoutCommentInput
@@ -15101,7 +15101,7 @@ export namespace Prisma {
     likes?: LikeCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15119,7 +15119,7 @@ export namespace Prisma {
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15153,7 +15153,7 @@ export namespace Prisma {
     likes?: LikeUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15171,7 +15171,7 @@ export namespace Prisma {
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15223,7 +15223,7 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    user: UserCreateNestedOneWithoutComentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     replies?: CommentCreateNestedManyWithoutParentInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
@@ -15265,7 +15265,7 @@ export namespace Prisma {
     likes?: LikeCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15283,7 +15283,7 @@ export namespace Prisma {
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15365,7 +15365,7 @@ export namespace Prisma {
     likes?: LikeUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15383,7 +15383,7 @@ export namespace Prisma {
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15401,7 +15401,7 @@ export namespace Prisma {
     blogs?: BlogCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15419,7 +15419,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15437,7 +15437,7 @@ export namespace Prisma {
     createdAt?: Date | string
     tags?: BlogCreatetagsInput | string[]
     bookmark?: BookmarkCreateNestedManyWithoutBlogInput
-    coments?: CommentCreateNestedManyWithoutBlogInput
+    comments?: CommentCreateNestedManyWithoutBlogInput
     user: UserCreateNestedOneWithoutBlogsInput
   }
 
@@ -15451,7 +15451,7 @@ export namespace Prisma {
     createdAt?: Date | string
     tags?: BlogCreatetagsInput | string[]
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutBlogInput
-    coments?: CommentUncheckedCreateNestedManyWithoutBlogInput
+    comments?: CommentUncheckedCreateNestedManyWithoutBlogInput
   }
 
   export type BlogCreateOrConnectWithoutLikesInput = {
@@ -15484,7 +15484,7 @@ export namespace Prisma {
     blogs?: BlogUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15502,7 +15502,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15526,7 +15526,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BlogUpdatetagsInput | string[]
     bookmark?: BookmarkUpdateManyWithoutBlogNestedInput
-    coments?: CommentUpdateManyWithoutBlogNestedInput
+    comments?: CommentUpdateManyWithoutBlogNestedInput
     user?: UserUpdateOneRequiredWithoutBlogsNestedInput
   }
 
@@ -15540,7 +15540,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BlogUpdatetagsInput | string[]
     bookmark?: BookmarkUncheckedUpdateManyWithoutBlogNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
   }
 
   export type UserCreateWithoutBookmarkInput = {
@@ -15557,7 +15557,7 @@ export namespace Prisma {
     blogs?: BlogCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15575,7 +15575,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -15593,7 +15593,7 @@ export namespace Prisma {
     createdAt?: Date | string
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeCreateNestedManyWithoutBlogInput
-    coments?: CommentCreateNestedManyWithoutBlogInput
+    comments?: CommentCreateNestedManyWithoutBlogInput
     user: UserCreateNestedOneWithoutBlogsInput
   }
 
@@ -15607,7 +15607,7 @@ export namespace Prisma {
     createdAt?: Date | string
     tags?: BlogCreatetagsInput | string[]
     likes?: LikeUncheckedCreateNestedManyWithoutBlogInput
-    coments?: CommentUncheckedCreateNestedManyWithoutBlogInput
+    comments?: CommentUncheckedCreateNestedManyWithoutBlogInput
   }
 
   export type BlogCreateOrConnectWithoutBookmarkInput = {
@@ -15640,7 +15640,7 @@ export namespace Prisma {
     blogs?: BlogUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15658,7 +15658,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -15682,7 +15682,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUpdateManyWithoutBlogNestedInput
-    coments?: CommentUpdateManyWithoutBlogNestedInput
+    comments?: CommentUpdateManyWithoutBlogNestedInput
     user?: UserUpdateOneRequiredWithoutBlogsNestedInput
   }
 
@@ -15696,10 +15696,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUncheckedUpdateManyWithoutBlogNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
   }
 
-  export type BlogCreateWithoutComentsInput = {
+  export type BlogCreateWithoutCommentsInput = {
     id?: string
     title: string
     content: string
@@ -15712,7 +15712,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutBlogsInput
   }
 
-  export type BlogUncheckedCreateWithoutComentsInput = {
+  export type BlogUncheckedCreateWithoutCommentsInput = {
     id?: string
     userId: string
     title: string
@@ -15725,12 +15725,12 @@ export namespace Prisma {
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutBlogInput
   }
 
-  export type BlogCreateOrConnectWithoutComentsInput = {
+  export type BlogCreateOrConnectWithoutCommentsInput = {
     where: BlogWhereUniqueInput
-    create: XOR<BlogCreateWithoutComentsInput, BlogUncheckedCreateWithoutComentsInput>
+    create: XOR<BlogCreateWithoutCommentsInput, BlogUncheckedCreateWithoutCommentsInput>
   }
 
-  export type UserCreateWithoutComentsInput = {
+  export type UserCreateWithoutCommentsInput = {
     id?: string
     name?: string | null
     email: string
@@ -15748,7 +15748,7 @@ export namespace Prisma {
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
-  export type UserUncheckedCreateWithoutComentsInput = {
+  export type UserUncheckedCreateWithoutCommentsInput = {
     id?: string
     name?: string | null
     email: string
@@ -15766,17 +15766,17 @@ export namespace Prisma {
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
-  export type UserCreateOrConnectWithoutComentsInput = {
+  export type UserCreateOrConnectWithoutCommentsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutComentsInput, UserUncheckedCreateWithoutComentsInput>
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
   }
 
   export type CommentCreateWithoutRepliesInput = {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
-    user: UserCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
     likes?: CommentLikeCreateNestedManyWithoutCommentInput
@@ -15802,8 +15802,8 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
-    user: UserCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     replies?: CommentCreateNestedManyWithoutParentInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
     likes?: CommentLikeCreateNestedManyWithoutCommentInput
@@ -15845,7 +15845,7 @@ export namespace Prisma {
     likes?: LikeCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepliedToCommentsInput = {
@@ -15863,7 +15863,7 @@ export namespace Prisma {
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     commentLike?: CommentLikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepliedToCommentsInput = {
@@ -15893,18 +15893,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type BlogUpsertWithoutComentsInput = {
-    update: XOR<BlogUpdateWithoutComentsInput, BlogUncheckedUpdateWithoutComentsInput>
-    create: XOR<BlogCreateWithoutComentsInput, BlogUncheckedCreateWithoutComentsInput>
+  export type BlogUpsertWithoutCommentsInput = {
+    update: XOR<BlogUpdateWithoutCommentsInput, BlogUncheckedUpdateWithoutCommentsInput>
+    create: XOR<BlogCreateWithoutCommentsInput, BlogUncheckedCreateWithoutCommentsInput>
     where?: BlogWhereInput
   }
 
-  export type BlogUpdateToOneWithWhereWithoutComentsInput = {
+  export type BlogUpdateToOneWithWhereWithoutCommentsInput = {
     where?: BlogWhereInput
-    data: XOR<BlogUpdateWithoutComentsInput, BlogUncheckedUpdateWithoutComentsInput>
+    data: XOR<BlogUpdateWithoutCommentsInput, BlogUncheckedUpdateWithoutCommentsInput>
   }
 
-  export type BlogUpdateWithoutComentsInput = {
+  export type BlogUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
@@ -15917,7 +15917,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutBlogsNestedInput
   }
 
-  export type BlogUncheckedUpdateWithoutComentsInput = {
+  export type BlogUncheckedUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -15930,18 +15930,18 @@ export namespace Prisma {
     bookmark?: BookmarkUncheckedUpdateManyWithoutBlogNestedInput
   }
 
-  export type UserUpsertWithoutComentsInput = {
-    update: XOR<UserUpdateWithoutComentsInput, UserUncheckedUpdateWithoutComentsInput>
-    create: XOR<UserCreateWithoutComentsInput, UserUncheckedCreateWithoutComentsInput>
+  export type UserUpsertWithoutCommentsInput = {
+    update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutComentsInput = {
+  export type UserUpdateToOneWithWhereWithoutCommentsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutComentsInput, UserUncheckedUpdateWithoutComentsInput>
+    data: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
   }
 
-  export type UserUpdateWithoutComentsInput = {
+  export type UserUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -15959,7 +15959,7 @@ export namespace Prisma {
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutComentsInput = {
+  export type UserUncheckedUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
@@ -15992,8 +15992,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
     likes?: CommentLikeUpdateManyWithoutCommentNestedInput
@@ -16052,7 +16052,7 @@ export namespace Prisma {
     likes?: LikeUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepliedToCommentsInput = {
@@ -16070,7 +16070,7 @@ export namespace Prisma {
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     commentLike?: CommentLikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CommentLikeUpsertWithWhereUniqueWithoutCommentInput = {
@@ -16103,7 +16103,7 @@ export namespace Prisma {
     blogs?: BlogCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     bookmark?: BookmarkCreateNestedManyWithoutUserInput
-    coments?: CommentCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutUserInput
     repliedToComments?: CommentCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -16121,7 +16121,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     bookmark?: BookmarkUncheckedCreateNestedManyWithoutUserInput
-    coments?: CommentUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     repliedToComments?: CommentUncheckedCreateNestedManyWithoutRepliedToUserInput
   }
 
@@ -16134,8 +16134,8 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    blog: BlogCreateNestedOneWithoutComentsInput
-    user: UserCreateNestedOneWithoutComentsInput
+    blog: BlogCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
     parent?: CommentCreateNestedOneWithoutRepliesInput
     replies?: CommentCreateNestedManyWithoutParentInput
     repliedToUser?: UserCreateNestedOneWithoutRepliedToCommentsInput
@@ -16182,7 +16182,7 @@ export namespace Prisma {
     blogs?: BlogUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUpdateManyWithoutUserNestedInput
-    coments?: CommentUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -16200,7 +16200,7 @@ export namespace Prisma {
     blogs?: BlogUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutUserNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     repliedToComments?: CommentUncheckedUpdateManyWithoutRepliedToUserNestedInput
   }
 
@@ -16219,8 +16219,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
@@ -16353,7 +16353,7 @@ export namespace Prisma {
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUpdateManyWithoutBlogNestedInput
     bookmark?: BookmarkUpdateManyWithoutBlogNestedInput
-    coments?: CommentUpdateManyWithoutBlogNestedInput
+    comments?: CommentUpdateManyWithoutBlogNestedInput
   }
 
   export type BlogUncheckedUpdateWithoutUserInput = {
@@ -16366,7 +16366,7 @@ export namespace Prisma {
     tags?: BlogUpdatetagsInput | string[]
     likes?: LikeUncheckedUpdateManyWithoutBlogNestedInput
     bookmark?: BookmarkUncheckedUpdateManyWithoutBlogNestedInput
-    coments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
   }
 
   export type BlogUncheckedUpdateManyWithoutUserInput = {
@@ -16437,7 +16437,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
@@ -16468,8 +16468,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     likes?: CommentLikeUpdateManyWithoutCommentNestedInput
@@ -16556,7 +16556,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     parent?: CommentUpdateOneWithoutRepliesNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
@@ -16602,8 +16602,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    blog?: BlogUpdateOneRequiredWithoutComentsNestedInput
-    user?: UserUpdateOneRequiredWithoutComentsNestedInput
+    blog?: BlogUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
     replies?: CommentUpdateManyWithoutParentNestedInput
     repliedToUser?: UserUpdateOneWithoutRepliedToCommentsNestedInput
     likes?: CommentLikeUpdateManyWithoutCommentNestedInput

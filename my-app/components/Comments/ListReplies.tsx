@@ -1,6 +1,6 @@
 'use client';
 
-import { getComments } from '@/actions/comments/get-coments';
+import { getComments } from '@/actions/comments/get-comments';
 import { useEffect, useState, useTransition } from 'react';
 import { CommentWithUser } from './ListComments';
 import ReplyCard from './ReplyCard';
