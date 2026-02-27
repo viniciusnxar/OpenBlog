@@ -1,14 +1,15 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { CommentWithUser } from './ListComments';
-import { Dispatch, SetStateAction } from 'react';
-import { FaRegThumbsUp } from "react-icons/fa6";
+import { Dispatch, SetStateAction, useState } from 'react';
+import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa6';
 import { MdDeleteOutline } from 'react-icons/md';
 import { BsReply } from 'react-icons/bs';
 import { FaRegComment } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
 import { deleteComment } from '@/actions/comments/delete-comments';
 import toast from 'react-hot-toast';
+import { likeComment } from '@/actions/comments/like-comment';
 
 interface CommentReactionsProps {
   comment: CommentWithUser;
@@ -25,6 +26,8 @@ const CommentReactions = ({
 }: CommentReactionsProps) => {
   const session = useSession();
   const userId = session.data?.user.userId;
+  const [likeCount, setLikeCount] = useState(comment._count.likes);
+  const [userHasLiked, setUserHasLiked] = useState(!!comment.likes.length);
 
   const handleReply = () => {
     setShowForm((prev) => !prev);
@@ -45,6 +48,14 @@ const CommentReactions = ({
     }
   };
 
+  const handleLike = async () => {
+    if (!userId) return;
+    setLikeCount((prevCount) => (userHasLiked ? prevCount - 1 : prevCount + 1));
+    setUserHasLiked((prevState) => !prevState);
+
+    await likeComment(comment.id, userId);
+  };
+
   return (
     <div
       className={cn(
@@ -53,8 +64,16 @@ const CommentReactions = ({
       )}
     >
       <div className='flex items-center gap-4'>
-        <span className='flex items-center gap-1 cursor-pointer'>
-          <FaRegThumbsUp size={20} /> {4}
+        <span
+          onClick={handleLike}
+          className='flex items-center gap-1 cursor-pointer'
+        >
+          {userHasLiked ? (
+            <FaThumbsUp size={20} />
+          ) : (
+            <FaRegThumbsUp size={20} />
+          )}{' '}
+          {likeCount}
         </span>
         {!isReply && (
           <span

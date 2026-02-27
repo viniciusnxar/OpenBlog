@@ -1,10 +1,9 @@
 'use client';
 
-
 import { FaBookmark, FaRegBookmark, FaRegComment } from 'react-icons/fa';
 import { useState } from 'react';
 import { BlogWithUser } from './ListBlogs';
-import { FaRegThumbsUp } from 'react-icons/fa6';
+import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa6';
 import { useSession } from 'next-auth/react';
 import { likeBlog } from '@/actions/blogs/like-blog';
 import { useRouter } from 'next/navigation';
@@ -42,11 +41,7 @@ const Reactions = ({ blog }: { blog: BlogWithUser }) => {
           onClick={handleLike}
           className='mr-4 flex items-center gap-1 cursor-pointer'
         >
-          {userLiked ? (
-            <FaRegThumbsUp size={20} />
-          ) : (
-            <FaRegThumbsUp size={20} />
-          )}
+          {userLiked ? <FaThumbsUp size={20} /> : <FaRegThumbsUp size={20} />}
           {likeCount}
         </span>
         <span className='flex items-center gap-1 cursor-pointer'>

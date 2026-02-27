@@ -37,6 +37,7 @@ export const getPublishedBlogs = async ({
         _count: {
           select: {
             likes: true,
+            coments: true,
           },
         },
         likes: {
