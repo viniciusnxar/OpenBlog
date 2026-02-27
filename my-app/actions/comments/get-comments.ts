@@ -1,14 +1,16 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { getBlogById } from '../blogs/getBlogById';
+
 
 export const getComments = async (
   blogId: string,
   parentId: string | null,
   userId?: string,
 ) => {
-  const blog = await getBlogById({ blogId });
+  const blog = await db.blog.findUnique({ where: { id: blogId } });
+
+  if (!blog) return { error: 'blog não encontrado' };
 
   if (!blog) return { error: 'Blog not found!' };
 

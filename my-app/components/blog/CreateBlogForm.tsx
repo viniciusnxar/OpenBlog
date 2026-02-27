@@ -15,6 +15,9 @@ import Alert from '../common/Alert';
 import { CreateBlog } from '@/actions/blogs/create-blog';
 import { Blog } from '@/prisma/generated/prisma';
 import { editBlog } from '@/actions/blogs/edit-blog';
+import { useEdgeStore } from '@/lib/edgestore';
+import { deleteBlog } from '@/actions/blogs/delete-blog';
+import { useRouter } from 'next/navigation';
 
 //userId pode ter problemas, colocar userId se tiver
 const CreateBlogForm = ({ blog }: { blog?: Blog }) => {
@@ -26,6 +29,10 @@ const CreateBlogForm = ({ blog }: { blog?: Blog }) => {
   const [error, setError] = useState<string | undefined>('');
   const [isPublishing, startPublishing] = useTransition();
   const [isSavingDraft, startSavingDraft] = useTransition();
+  const [isDeleting, startDeleting] = useTransition();
+  const { edgestore } = useEdgeStore();
+
+  const router = useRouter();
 
   console.log(uploadedCover);
   const {
@@ -140,6 +147,31 @@ const CreateBlogForm = ({ blog }: { blog?: Blog }) => {
     });
   };
 
+  const onDelete: SubmitHandler<BlogSchemaType> = (data) => {
+    console.log('Data:', data);
+    setSuccess('');
+    setError('');
+
+    startDeleting(async () => {
+      if (data.coverImage) {
+        await edgestore.publicFiles.delete({
+          url: data.coverImage,
+        });
+      }
+      if (blog) {
+        deleteBlog(blog.id).then((res) => {
+          if (res.error) {
+            setError(res.error);
+          }
+          if (res.success) {
+            setSuccess(res.success);
+          }
+        });
+        router.push('/blog/feed/1');
+      }
+    });
+  };
+
   console.log('errooooo:', errors);
 
   return (
@@ -207,9 +239,15 @@ const CreateBlogForm = ({ blog }: { blog?: Blog }) => {
         {success && <Alert message={success} success />}
         {error && <Alert message={error} error />}
         <div className='flex items-center justify-between gap-6'>
-          <div>
-            <Button type='button' label='Deletar' />
-          </div>
+          {blog && (
+            <div>
+              <Button
+                onClick={handleSubmit(onDelete)}
+                type='button'
+                label={isDeleting ? 'Deletando...' : 'Deletar'}
+              />
+            </div>
+          )}
           <div className='flex gap-4'>
             <Button
               type='submit'
