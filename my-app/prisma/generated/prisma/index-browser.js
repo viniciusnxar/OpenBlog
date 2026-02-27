@@ -173,7 +173,7 @@ exports.Prisma.BlogScalarFieldEnum = {
   tags: 'tags'
 };
 
-exports.Prisma.ClapScalarFieldEnum = {
+exports.Prisma.LikeScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   blogId: 'blogId',
@@ -194,6 +194,13 @@ exports.Prisma.CommentScalarFieldEnum = {
   parentId: 'parentId',
   repliedToUserId: 'repliedToUserId',
   content: 'content',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CommentLikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  commentId: 'commentId',
   createdAt: 'createdAt'
 };
 
@@ -222,9 +229,10 @@ exports.Prisma.ModelName = {
   EmailVerificationToken: 'EmailVerificationToken',
   PasswordResetToken: 'PasswordResetToken',
   Blog: 'Blog',
-  Clap: 'Clap',
+  Like: 'Like',
   Bookmark: 'Bookmark',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  CommentLike: 'CommentLike'
 };
 
 /**

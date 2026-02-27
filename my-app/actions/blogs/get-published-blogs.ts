@@ -36,10 +36,10 @@ export const getPublishedBlogs = async ({
         },
         _count: {
           select: {
-            claps: true,
+            likes: true,
           },
         },
-        claps: {
+        likes: {
           where: {
             userId,
           },

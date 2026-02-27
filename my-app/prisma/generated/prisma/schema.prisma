@@ -8,18 +8,19 @@ datasource db {
 }
 
 model User {
-  id                String     @id @default(cuid())
+  id                String        @id @default(cuid())
   name              String?
-  email             String     @unique
+  email             String        @unique
   password          String?
   emailVerified     DateTime?
   image             String?
   accounts          Account[]
   blogs             Blog[]
-  claps             Clap[]
+  likes             Like[]
+  commentLike       CommentLike[]
   bookmark          Bookmark[]
   coments           Comment[]
-  repliedToComments Comment[]  @relation("ReplyToUser")
+  repliedToComments Comment[]     @relation("ReplyToUser")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -76,13 +77,13 @@ model Blog {
   isPublished Boolean    @default(false)
   createdAt   DateTime   @default(now())
   tags        String[]
-  claps       Clap[]
+  likes       Like[]
   bookmark    Bookmark[]
   coments     Comment[]
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model Clap {
+model Like {
   id        String   @id @default(cuid())
   userId    String
   blogId    String
@@ -120,4 +121,18 @@ model Comment {
   parent        Comment?  @relation("OneLevelThread", fields: [parentId], references: [id], onDelete: Cascade)
   replies       Comment[] @relation("OneLevelThread")
   repliedToUser User?     @relation("ReplyToUser", fields: [repliedToUserId], references: [id])
+
+  likes CommentLike[]
+}
+
+model CommentLike {
+  id        String   @id @default(cuid())
+  userId    String
+  commentId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, commentId])
 }

@@ -2,7 +2,7 @@
 import { db } from '@/lib/db';
 import { getUserById } from '@/lib/user';
 
-export const clapBlog = async (blogId: string, userId: string) => {
+export const likeBlog = async (blogId: string, userId: string) => {
   const blog = await db.blog.findUnique({
     where: { id: blogId },
   });
@@ -12,24 +12,24 @@ export const clapBlog = async (blogId: string, userId: string) => {
   const user = await getUserById(userId);
   if (!user) return { error: 'User not found!' };
 
-  const clap = await db.clap.findUnique({
+  const like = await db.like.findUnique({
     where: {
       userId_blogId: { userId, blogId },
     },
   });
 
-  if (clap) {
-    await db.clap.delete({
-      where: { id: clap.id },
+  if (like) {
+    await db.like.delete({
+      where: { id: like.id },
     });
-    return { success: 'Unclapped' };
+    return { success: 'Unlikeped' };
   } else {
-    await db.clap.create({
+    await db.like.create({
       data: {
         userId,
         blogId,
       },
     });
-    return { success: 'Clapped' };
+    return { success: 'likeped' };
   }
 };

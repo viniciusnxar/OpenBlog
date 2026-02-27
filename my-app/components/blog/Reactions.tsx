@@ -1,29 +1,30 @@
 'use client';
-import { PiHandsClapping } from 'react-icons/pi';
+
+
 import { FaBookmark, FaRegBookmark, FaRegComment } from 'react-icons/fa';
 import { useState } from 'react';
-import { BlogwithUser } from './ListBlogs';
-import { FaHandsClapping } from 'react-icons/fa6';
+import { BlogWithUser } from './ListBlogs';
+import { FaRegThumbsUp } from 'react-icons/fa6';
 import { useSession } from 'next-auth/react';
-import { clapBlog } from '@/actions/blogs/clap-blog';
+import { likeBlog } from '@/actions/blogs/like-blog';
 import { useRouter } from 'next/navigation';
 import { bookmarkBlog } from '@/actions/blogs/bookmark-blog';
 
-const Reactions = ({ blog }: { blog: BlogwithUser }) => {
+const Reactions = ({ blog }: { blog: BlogWithUser }) => {
   const session = useSession();
   const userId = session.data?.user.userId;
-  const [clapCount, setClapCount] = useState(blog._count.claps);
-  const [userClapped, setUserClapped] = useState(!!blog.claps.length);
+  const [likeCount, setLikeCount] = useState(blog._count.likes);
+  const [userLiked, setUserliked] = useState(!!blog.likes.length);
   const [userBookmarked, setUserBookmarked] = useState(!!blog.bookmark.length);
 
   const router = useRouter();
 
-  const handleClap = async () => {
+  const handleLike = async () => {
     if (!userId) return;
-    setClapCount((prevCount) => (userClapped ? prevCount - 1 : prevCount + 1));
-    setUserClapped((prevState) => !prevState);
+    setLikeCount((prevCount) => (userLiked ? prevCount - 1 : prevCount + 1));
+    setUserliked((prevState) => !prevState);
 
-    await clapBlog(blog.id, userId);
+    await likeBlog(blog.id, userId);
     router.refresh();
   };
 
@@ -38,15 +39,15 @@ const Reactions = ({ blog }: { blog: BlogwithUser }) => {
     <div className='flex justify-between items-center w-full text-sm'>
       <div className='flex items-center gap-4'>
         <span
-          onClick={handleClap}
+          onClick={handleLike}
           className='mr-4 flex items-center gap-1 cursor-pointer'
         >
-          {userClapped ? (
-            <FaHandsClapping size={20} />
+          {userLiked ? (
+            <FaRegThumbsUp size={20} />
           ) : (
-            <PiHandsClapping size={20} />
+            <FaRegThumbsUp size={20} />
           )}
-          {clapCount}
+          {likeCount}
         </span>
         <span className='flex items-center gap-1 cursor-pointer'>
           <FaRegComment size={18} />

@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils';
 import { CommentWithUser } from './ListComments';
 import { Dispatch, SetStateAction } from 'react';
-import { FaHandsClapping } from 'react-icons/fa6';
+import { FaRegThumbsUp } from "react-icons/fa6";
 import { MdDeleteOutline } from 'react-icons/md';
 import { BsReply } from 'react-icons/bs';
 import { FaRegComment } from 'react-icons/fa';
@@ -54,7 +54,7 @@ const CommentReactions = ({
     >
       <div className='flex items-center gap-4'>
         <span className='flex items-center gap-1 cursor-pointer'>
-          <FaHandsClapping size={20} /> {4}
+          <FaRegThumbsUp size={20} /> {4}
         </span>
         {!isReply && (
           <span

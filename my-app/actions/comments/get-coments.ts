@@ -3,7 +3,6 @@
 import { db } from '@/lib/db';
 import { getBlogById } from '../blogs/getBlogById';
 
-
 export const getComments = async (
   blogId: string,
   parentId: string | null,
@@ -34,7 +33,7 @@ export const getComments = async (
         _count: {
           select: {
             replies: true,
-            // claps: true,
+            // likes: true,
           },
         },
       },

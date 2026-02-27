@@ -21,10 +21,10 @@ export const getBlogById = async ({ blogId }: { blogId: string }) => {
         },
         _count: {
           select: {
-            claps: true,
+            likes: true,
           },
         },
-        claps: {
+        likes: {
           where: {
             userId,
           },
