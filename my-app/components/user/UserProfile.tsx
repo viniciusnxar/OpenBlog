@@ -2,8 +2,18 @@ import { User } from '@/prisma/generated/prisma/client';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Calendar, UserRound } from 'lucide-react';
 import moment from 'moment';
+import { getBlogsByUserId } from '@/actions/blogs/get-blogs-by-userid';
+import Alert from '../common/Alert';
+import ListBlogs from '../blog/ListBlogs';
 
-const UserProfile = ({ user, page }: { user: User; page: string }) => {
+const UserProfile = async ({ user, page }: { user: User; page: string }) => {
+  const currentPage = parseInt(page, 10) || 1;
+
+  const { success, error } = await getBlogsByUserId({
+    page: currentPage,
+    limit: 5,
+    userId: user.id,
+  });
   return (
     <div className='max-w-300 m-auto p-4'>
       <div className='flex gap-6 justify-between'>
@@ -43,6 +53,18 @@ const UserProfile = ({ user, page }: { user: User; page: string }) => {
             <span className='bg-secondary py-1 px-1 rounded'>{user.email}</span>
           </span>
         </div>
+      </div>
+      <div>Tags</div>
+      <div>
+        {error && <Alert error message='Error fetching user blogs' />}
+        {success && (
+          <ListBlogs
+            blogs={success.blogs}
+            hasMore={success.hasMore}
+            currentPage={currentPage}
+            isUserProfile={true}
+          />
+        )}
       </div>
     </div>
   );
