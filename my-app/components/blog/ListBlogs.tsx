@@ -5,8 +5,8 @@ import Pagination from './Pagination';
 export type BlogWithUser = Blog & {
   user: Pick<User, 'id' | 'name' | 'image'>;
   _count: {
-    likes: number
-    comments: number
+    likes: number;
+    comments: number;
   };
   likes: {
     id: string;
@@ -35,7 +35,11 @@ const ListBlogs = ({
           <BlogCard blog={blog} isUserProfile={isUserProfile} key={blog.id} />
         ))}
       </section>
-      <Pagination currentPage={currentPage} hasMore={hasMore} />
+      <Pagination
+        currentPage={currentPage}
+        hasMore={hasMore}
+        isUserProfile={isUserProfile}
+      />
     </div>
   );
 };
