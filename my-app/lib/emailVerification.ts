@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { db } from './db';
 import { Resend } from 'resend';
 
-// 1. Função apenas para BUSCAR um token existente (útil para limpar o banco)
 export const getVerificationTokenByEmail = async (email: string) => {
   try {
     const verificationToken = await db.emailVerificationToken.findFirst({
@@ -14,14 +13,12 @@ export const getVerificationTokenByEmail = async (email: string) => {
   }
 };
 
-
 export const generateEmailVerificationToken = async (
   email: string,
   userId?: string,
 ) => {
   const token = uuidv4();
   const expires = new Date(new Date().getTime() + 3600 * 1000); // 1 hora
-
 
   const existingToken = await getVerificationTokenByEmail(email);
   if (existingToken) {
@@ -30,19 +27,17 @@ export const generateEmailVerificationToken = async (
     });
   }
 
-
   const emailVerificationToken = await db.emailVerificationToken.create({
     data: {
       email,
       token,
       expires,
-      userId, 
+      userId,
     },
   });
 
   return emailVerificationToken;
 };
-
 
 export const sendEmailVerificationToken = async (
   email: string,
@@ -51,22 +46,11 @@ export const sendEmailVerificationToken = async (
   const resend = new Resend(process.env.RESEND_API_KEY);
   const emailVerificationLink = `${process.env.BASE_URL}/email-verification?token=${token}`;
 
-  try {
-    const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: email,
-      subject: 'Confirmação de Email',
-      html: `<p>Para confirmar seu e-mail, clique: <a href='${emailVerificationLink}'>aqui</a> para verificar!</p>`,
-    });
-
-    if (error) {
-      console.error('Erro do Resend:', error);
-      return { error };
-    }
-
-    return { success: true };
-  } catch (error) {
-    console.error('Erro catastrófico no envio:', error);
-    return { error: 'Falha na conexão com servidor de e-mail' };
-  }
+  const res = await resend.emails.send({
+    from: 'onboarding@resend.dev',
+    to: email,
+    subject: 'Confirmação de Email',
+    html: `<p>Para confirmar seu e-mail, clique: <a href='${emailVerificationLink}'>aqui</a> para verificar!</p>`,
+  });
+  return { error: res.error };
 };
