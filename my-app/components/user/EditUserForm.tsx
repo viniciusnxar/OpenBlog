@@ -13,6 +13,8 @@ import Alert from '../common/Alert';
 import Heading from '../common/Heading';
 import { User } from '@/prisma/generated/prisma';
 import { editUser } from '@/actions/users/edit-user';
+import { deleteUser } from '@/actions/users/delete-user';
+import { signOut } from 'next-auth/react';
 // import { tags } from '@/lib/tags';
 
 const EditUserForm = ({
@@ -23,8 +25,11 @@ const EditUserForm = ({
   isCredentials: boolean;
 }) => {
   const [isPending, startTransition] = useTransition();
+  const [isDeleting, startDeleting] = useTransition();
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
+  const [deleteError, setDeleteError] = useState<string | undefined>('');
+  const [deleteSuccess, setDeleteSuccess] = useState<string | undefined>('');
   const {
     register,
     handleSubmit,
@@ -49,6 +54,22 @@ const EditUserForm = ({
 
         if (res?.success) {
           setSuccess(res.success);
+        }
+      });
+    });
+  };
+
+  const onDelete = () => {
+    setDeleteSuccess('');
+    setDeleteError('');
+    startDeleting(() => {
+      deleteUser(user.id).then((res) => {
+        setDeleteError(res.error);
+        setDeleteSuccess(res.success);
+        if (res.success) {
+          setTimeout(() => {
+            signOut();
+          }, 5000);
         }
       });
     });
@@ -115,6 +136,20 @@ const EditUserForm = ({
           disabled={isPending}
         />
       </form>
+      <div className='max-w-125 m-auto mt-12'>
+        <div className='text-rose-500'>
+          <Heading title='Atenção!!' lg />
+        </div>
+        {deleteError && <Alert message={deleteError} error />}
+        {deleteSuccess && <Alert message={deleteSuccess} success />}
+        <Button
+          label={isDeleting ? 'Deleting...' : 'Delete Account'}
+          outlined
+          type='button'
+          className='mt-4'
+          onClick={() => onDelete()}
+        />
+      </div>
     </>
   );
 };
