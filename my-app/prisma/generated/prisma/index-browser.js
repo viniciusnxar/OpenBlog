@@ -153,6 +153,7 @@ exports.Prisma.AccountScalarFieldEnum = {
 exports.Prisma.EmailVerificationTokenScalarFieldEnum = {
   id: 'id',
   email: 'email',
+  userId: 'userId',
   token: 'token',
   expires: 'expires'
 };

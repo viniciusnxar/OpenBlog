@@ -11,10 +11,9 @@ import FormField from '../common/FormField';
 import Button from '../common/Button';
 import Alert from '../common/Alert';
 import Heading from '../common/Heading';
-import { passwordEmail } from '@/actions/auth/password-email';
 import { User } from '@/prisma/generated/prisma';
 import { editUser } from '@/actions/users/edit-user';
-import { tags } from '@/lib/tags';
+// import { tags } from '@/lib/tags';
 
 const EditUserForm = ({
   user,
@@ -34,17 +33,20 @@ const EditUserForm = ({
     resolver: zodResolver(EditProfileSchema),
     defaultValues: {
       name: user.name || undefined,
+      email: user.email || undefined,
       bio: user.bio || undefined,
       tags: user.tags || undefined,
     },
   });
   const onSubmit: SubmitHandler<EditProfileSchemaType> = (data) => {
+    setSuccess('');
     setError('');
     startTransition(() => {
       editUser(data, user.id).then((res) => {
         if (res?.error) {
           setError(res.error);
         }
+
         if (res?.success) {
           setSuccess(res.success);
         }
@@ -67,6 +69,16 @@ const EditUserForm = ({
           disabled={isPending}
           label='Name'
         />
+        {isCredentials && (
+          <FormField
+            id='email'
+            register={register}
+            errors={errors}
+            placeholder='email'
+            disabled={isPending || !isCredentials}
+            label='Email'
+          />
+        )}
         <FormField
           id='bio'
           register={register}

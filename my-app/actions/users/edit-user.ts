@@ -1,7 +1,11 @@
 'use server';
 import { auth } from '@/auth';
 import { db } from '@/lib/db';
-import { getUserById } from '@/lib/user';
+import {
+  generateEmailVerificationToken,
+  sendEmailVerificationToken,
+} from '@/lib/emailVerification';
+import { getUserByEmail, getUserById } from '@/lib/user';
 import {
   EditProfileSchema,
   EditProfileSchemaType,
@@ -17,18 +21,62 @@ export const editUser = async (
 
   const session = await auth();
 
-  if (session?.user.userId !== userId) return { error: 'Sem Autorizaçao!' };
+  const sessionUserId = session?.user?.id || session?.user?.userId;
+
+  if (sessionUserId !== userId) {
+    console.log('ID da Sessão:', sessionUserId); 
+    console.log('ID solicitado:', userId);
+    return { error: 'Sem Autorizaçao!' };
+  }
 
   const user = await getUserById(userId);
-
   if (!user) return { error: 'Usuario nao existe!' };
 
-  await db.user.update({
-    where: { id: userId },
-    data: {
-      ...vFields.data,
-    },
-  });
+  const { email, ...rest } = vFields.data;
 
-  return { success: 'Perfil de usuario atualizado!' };
+  if (email && email !== user.email) {
+    const existingUser = await getUserByEmail(email);
+
+    if (existingUser) {
+      return { error: 'Email já em uso!' };
+    }
+
+    await db.user.update({
+      where: { id: userId },
+      data: {
+        ...rest,
+      },
+    });
+
+    const verificationToken = await generateEmailVerificationToken(
+      email,
+      userId,
+    );
+
+    const { error } = await sendEmailVerificationToken(
+      verificationToken.email,
+      verificationToken.token,
+    );
+
+    if (error) {
+      console.error('Erro no envio do e-mail:', error);
+      return {
+        error: 'Erro ao enviar e-mail de confirmação! Tente novamente.',
+      };
+    }
+
+    return {
+      success:
+        'Dados salvos! Confira seu novo e-mail para confirmar a alteração.',
+    };
+  } else {
+    await db.user.update({
+      where: { id: userId },
+      data: {
+        ...vFields.data,
+      },
+    });
+
+    return { success: 'Perfil atualizado com sucesso!' };
+  }
 };

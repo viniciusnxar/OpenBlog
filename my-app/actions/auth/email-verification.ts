@@ -1,26 +1,48 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { getUserByEmail } from '@/lib/user';
 
 export const verifyEmail = async (token: string) => {
   const emailVerificationToken = await db.emailVerificationToken.findUnique({
     where: { token },
   });
-  if (!emailVerificationToken)
-    return { error: 'Token de verificaçao inexistente' };
+
+  if (!emailVerificationToken) {
+    return { error: 'Token de verificação inexistente!' };
+  }
 
   const isExpired = new Date(emailVerificationToken.expires) < new Date();
+  if (isExpired) {
+    return { error: 'Token de verificação expirado!' };
+  }
 
-  if (isExpired) return { error: 'Token de verificaçao expirado' };
+  let existingUser = null;
 
-  const existingUser = await getUserByEmail(emailVerificationToken.email);
+  if (emailVerificationToken.userId) {
+    existingUser = await db.user.findUnique({
+      where: { id: emailVerificationToken.userId },
+    });
+  } else {
+    existingUser = await db.user.findUnique({
+      where: { email: emailVerificationToken.email },
+    });
+  }
 
-  if (!existingUser)
-    return { error: 'Usuário inexistente em nosso Banco de dados!' };
+  if (!existingUser) {
+    return { error: 'Usuário não encontrado no sistema!' };
+  }
+
   await db.user.update({
     where: { id: existingUser.id },
-    data: { emailVerified: new Date(), email: emailVerificationToken.email },
+    data: {
+      email: emailVerificationToken.email,
+      emailVerified: new Date(),
+    },
   });
-  return { success: 'Email Verificado!' };
+
+  await db.emailVerificationToken.delete({
+    where: { id: emailVerificationToken.id },
+  });
+
+  return { success: 'Email verificado e atualizado com sucesso!' };
 };
