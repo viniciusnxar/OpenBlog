@@ -21,7 +21,13 @@ export const editUser = async (
 
   const session = await auth();
 
-  if (session?.user.userId !== userId) return { error: 'Sem Autorizaçao!' };
+  const sessionUserId = session?.user?.id || session?.user?.userId;
+
+  if (sessionUserId !== userId) {
+    console.log('ID da Sessão:', sessionUserId); 
+    console.log('ID solicitado:', userId);
+    return { error: 'Sem Autorizaçao!' };
+  }
 
   const user = await getUserById(userId);
   if (!user) return { error: 'Usuario nao existe!' };
